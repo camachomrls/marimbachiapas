@@ -1,0 +1,10 @@
+{
+  "description": "Showcases the Marimba Orquesta Chiapas with three visually distinct designs, enhancing user engagement through a warm, professional, and organic aesthetic.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,1789 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Manrope:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --cream: #f6efdf;
+  --cream-2: #e7d2a8;
+  --red: #9f402e;
+  --red-dark: #7c3226;
+  --clay: #bf684e;
+  --wood: #9d7a50;
+  --wood-dark: #4e2d22;
+  --brown: #302019;
+  --green: #368749;
+  --line: rgba(78, 48, 34, 0.18);
+  --organic-radius: 2.4rem 0.9rem 2.4rem 0.9rem;
+  font-family: "Manrope", Arial, sans-serif;
+  color: var(--brown);
+  background: var(--cream);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  line-height: 1.5;
+  background: var(--cream);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #f2c38c;
+  outline-offset: 3px;
+}
+
+.shell {
+  width: min(calc(100% - 2rem), 72rem);
+  margin-inline: auto;
+}
+
+.icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--red);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Header */
+.site-header {
+  height: 4.4rem;
+  position: absolute;
+  z-index: 30;
+  top: 0;
+  right: 0;
+  left: 0;
+  color: #fff4da;
+}
+
+.header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.site-header .brand {
+  display: none;
+}
+
+.brand {
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.brand-bars {
+  width: 1.75rem;
+  height: 1.4rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.14rem;
+}
+
+.brand-bars i {
+  width: 0.2rem;
+  border-radius: 1rem;
+  background: currentColor;
+}
+
+.brand-bars i:nth-child(1),
+.brand-bars i:nth-child(5) {
+  height: 48%;
+}
+
+.brand-bars i:nth-child(2),
+.brand-bars i:nth-child(4) {
+  height: 73%;
+}
+
+.brand-bars i:nth-child(3) {
+  height: 100%;
+}
+
+.brand > span:last-child {
+  display: flex;
+  flex-direction: column;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 0.77rem;
+  line-height: 0.95;
+}
+
+.brand strong {
+  font-size: 0.94rem;
+}
+
+.primary-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin-left: auto;
+}
+
+.primary-nav a {
+  min-height: 2.35rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.primary-nav a:hover,
+.primary-nav a.active {
+  background: rgba(255, 240, 213, 0.1);
+}
+
+.primary-nav a:hover {
+  transform: translateY(-1px);
+}
+
+.primary-nav a.nav-pill {
+  padding-inline: 1.05rem;
+  background: rgba(211, 112, 78, 0.45);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 232, 204, 0.12),
+    0 3px 8px rgba(74, 27, 19, 0.17);
+}
+
+.menu-toggle {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: none;
+  place-items: center;
+  margin-left: auto;
+  border: 0;
+  color: inherit;
+  background: transparent;
+}
+
+/* Original hero composition */
+.page-hero {
+  min-height: 17rem;
+  position: relative;
+  display: grid;
+  place-items: start center;
+  overflow: hidden;
+  padding: 6.4rem 1rem 5rem;
+  color: #fff2d4;
+  background:
+    radial-gradient(circle at 50% 135%, rgba(201, 101, 72, 0.54), transparent 50%),
+    linear-gradient(108deg, #913728, #a34632 52%, #913728);
+}
+
+.page-hero.home-hero {
+  min-height: 15rem;
+  padding-top: 4.55rem;
+}
+
+.heritage-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      transparent 0 3.1rem,
+      rgba(239, 190, 135, 0.55) 3.15rem 3.3rem,
+      transparent 3.35rem 6.4rem
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 4.2rem,
+      rgba(91, 30, 22, 0.65) 4.25rem 4.45rem,
+      transparent 4.5rem 8.4rem
+    );
+  mask-image: linear-gradient(90deg, #000 0 24%, transparent 43% 57%, #000 76%);
+}
+
+.heritage-pattern::before,
+.heritage-pattern::after {
+  content: "";
+  height: 0.8rem;
+  position: absolute;
+  right: 0;
+  left: 0;
+  background:
+    linear-gradient(135deg, transparent 47%, #e3b36f 48% 52%, transparent 53%)
+      0 0 / 1.6rem 0.8rem,
+    linear-gradient(45deg, transparent 47%, #5e241d 48% 52%, transparent 53%)
+      0 0 / 1.6rem 0.8rem;
+  opacity: 0.7;
+}
+
+.heritage-pattern::before {
+  top: 0.35rem;
+}
+
+.heritage-pattern::after {
+  bottom: 2.65rem;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.page-hero h1 {
+  margin: 0;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(2.3rem, 4.7vw, 4rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.page-hero .hero-inner > p:last-of-type {
+  margin: 0.65rem auto 0;
+  color: #f2ddc0;
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.page-hero .eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 0.7rem;
+  color: #e9c29a;
+}
+
+.page-hero .eyebrow span {
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.hero-wave {
+  height: 4.4rem;
+  position: absolute;
+  right: -4%;
+  bottom: -2.25rem;
+  left: -4%;
+  border-radius: 51% 49% 0 0 / 55% 58% 0 0;
+  background: var(--cream);
+  transform: rotate(0.8deg);
+}
+
+/* Floating wooden contact panel */
+.contact-panel-wrap {
+  position: relative;
+  z-index: 8;
+  display: flex;
+  justify-content: center;
+  margin-top: -4.9rem;
+  pointer-events: none;
+}
+
+.contact-panel {
+  width: 27rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  overflow: hidden;
+  padding: 0.55rem;
+  border: 2px solid #e8cda2;
+  border-radius: 3.2rem 4.3rem 3.4rem 2.8rem / 2.6rem 3.4rem 2.7rem 3.4rem;
+  color: #fff4da;
+  background: #543023;
+  box-shadow:
+    0 4px 7px rgba(55, 29, 18, 0.26),
+    0 10px 18px rgba(55, 29, 18, 0.1),
+    inset 0 0 0 1px rgba(70, 36, 23, 0.7);
+  pointer-events: auto;
+  transform: rotate(-0.35deg);
+}
+
+.contact-panel a {
+  min-height: 4.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.45rem;
+  text-align: center;
+}
+
+.contact-panel a:nth-child(odd) {
+  border-right: 1px solid rgba(255, 239, 210, 0.42);
+}
+
+.contact-panel a:nth-child(-n + 2) {
+  border-bottom: 1px solid rgba(255, 239, 210, 0.42);
+}
+
+.contact-panel a:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.contact-panel .icon {
+  width: 1rem;
+  height: 1rem;
+  margin-bottom: 0.18rem;
+  color: #f0d29e;
+}
+
+.contact-panel span {
+  font-size: 0.52rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contact-panel strong {
+  max-width: 10rem;
+  margin-top: 0.08rem;
+  font-size: 0.62rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.contact-panel.is-featured {
+  width: min(100%, 34rem);
+  padding: 1.1rem 1.4rem 1.25rem;
+  border: 0;
+  border-radius: 4.5rem 3rem 4.2rem 3.2rem / 3rem 4rem 3.2rem 4rem;
+  color: #f9ecd5;
+  background: #4c2c22;
+  box-shadow:
+    0 4px 7px rgba(58, 28, 18, 0.18),
+    0 11px 21px rgba(58, 28, 18, 0.09);
+}
+
+.contact-panel.is-featured a {
+  min-height: 3.7rem;
+  border: 0;
+}
+
+.contact-panel.is-featured .icon {
+  color: #e6bf8c;
+}
+
+.contact-panel.is-featured span {
+  font-weight: 500;
+}
+
+.contact-panel-action {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 236, 204, 0.2);
+}
+
+.contact-panel-action p {
+  max-width: 14rem;
+  margin: 0;
+  font-size: 0.62rem;
+  line-height: 1.5;
+  color: #dec3a6;
+}
+
+.contact-panel-action .whatsapp-button {
+  min-height: 2.55rem;
+  background: #bd684e;
+  box-shadow: 0 5px 12px rgba(94, 43, 29, 0.2);
+}
+
+/* Home repertoire preview */
+.featured-section {
+  padding-top: 2.2rem;
+  padding-bottom: 4.5rem;
+}
+
+.section-title {
+  max-width: 56rem;
+  margin: 0 auto 1.8rem;
+  text-align: center;
+}
+
+.section-title > p:empty,
+.section-title > span {
+  display: none;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.65rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+.featured-grid {
+  max-width: 58rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start;
+  gap: 1.1rem;
+  margin-inline: auto;
+}
+
+.featured-card {
+  overflow: hidden;
+  padding: 0.55rem 0.55rem 1.05rem;
+  border-radius: 2.2rem 1.1rem 2.8rem 1rem / 1.55rem 2.3rem 1.55rem 2.6rem;
+  box-shadow:
+    0 3px 5px rgba(73, 42, 25, 0.22),
+    0 9px 16px rgba(73, 42, 25, 0.08);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.featured-card:nth-child(1) {
+  color: #2d1a11;
+  background: #d8b57f;
+  transform: rotate(0.3deg);
+}
+
+.featured-card:nth-child(2) {
+  color: #fff3dc;
+  background: #b9634b;
+  transform: translateY(0.15rem) rotate(-0.35deg);
+}
+
+.featured-card:nth-child(3) {
+  color: #fff3dc;
+  background: #806047;
+  transform: rotate(0.25deg);
+}
+
+.featured-card:hover {
+  box-shadow:
+    0 4px 7px rgba(73, 42, 25, 0.2),
+    0 12px 20px rgba(73, 42, 25, 0.1);
+  transform: translateY(-2px);
+}
+
+.featured-media {
+  aspect-ratio: 1.9;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid #edd0a1;
+  border-radius: 1.65rem 0.85rem 1.5rem 0.8rem;
+  background-image: url("/marimba-reference.png");
+  background-repeat: no-repeat;
+  background-size: 620% auto;
+  box-shadow:
+    0 2px 4px rgba(35, 19, 12, 0.55),
+    inset 0 0 0 1px rgba(63, 31, 17, 0.6);
+}
+
+.featured-card:nth-child(1) .featured-media {
+  background-position: 7% 81%;
+}
+
+.featured-card:nth-child(2) .featured-media {
+  background-position: 29% 81%;
+}
+
+.featured-card:nth-child(3) .featured-media {
+  background-position: 51% 81%;
+}
+
+.featured-media img {
+  display: none;
+}
+
+.video-label {
+  position: absolute;
+  z-index: 2;
+  top: 0.55rem;
+  left: 0.7rem;
+  color: white;
+  font-size: 0.45rem;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px #000;
+}
+
+.play-badge {
+  width: 2.65rem;
+  height: 2.65rem;
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 0.35rem;
+  color: white;
+  background: rgba(62, 39, 24, 0.82);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  cursor: not-allowed;
+  transform: translate(-50%, -50%);
+}
+
+.featured-card:nth-child(2) .play-badge {
+  background: #e62117;
+}
+
+.play-badge .icon {
+  width: 1rem;
+}
+
+.featured-copy {
+  padding: 0.65rem 0.55rem 0;
+}
+
+.featured-copy p {
+  display: none;
+}
+
+.featured-copy h3 {
+  margin: 0;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.featured-copy > span {
+  max-width: 15rem;
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.62rem;
+  line-height: 1.35;
+}
+
+.text-action {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 2.2rem auto 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--red);
+  color: var(--red);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+
+.home-booking {
+  min-height: 13rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.85fr auto;
+  align-items: center;
+  gap: 2.4rem;
+  margin-bottom: 4.5rem;
+  padding: 2.4rem 3rem;
+  border-radius: var(--organic-radius);
+  color: #fff1d5;
+  background:
+    repeating-linear-gradient(
+      3deg,
+      transparent 0 2.5rem,
+      rgba(255, 255, 255, 0.025) 2.55rem
+    ),
+    #9d402f;
+}
+
+.home-booking h2 {
+  margin: 0.45rem 0 0;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.home-booking > p {
+  color: #ebcfaa;
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.home-booking .eyebrow {
+  color: #e9b987;
+}
+
+.whatsapp-button,
+.cream-button {
+  min-height: 2.8rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  border: 0;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.whatsapp-button {
+  color: white;
+  background: var(--green);
+  box-shadow:
+    0 2px 4px rgba(29, 78, 34, 0.22),
+    0 6px 12px rgba(29, 78, 34, 0.1);
+}
+
+.cream-button {
+  color: var(--red);
+  background: #fff2d7;
+}
+
+.whatsapp-button:hover,
+.cream-button:hover {
+  transform: translateY(-2px);
+}
+
+.whatsapp-button:hover {
+  background: #2f7841;
+  box-shadow:
+    0 3px 5px rgba(29, 78, 34, 0.2),
+    0 8px 15px rgba(29, 78, 34, 0.12);
+}
+
+.cream-button:hover {
+  background: #fff7e6;
+}
+
+/* Repertoire page */
+.repertoire-section {
+  padding: 3rem 0 5rem;
+}
+
+.repertoire-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filters button {
+  min-height: 2.55rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(139, 56, 39, 0.52);
+  border-radius: 999px;
+  color: var(--red);
+  background: transparent;
+  font-size: 0.62rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.filters button:hover,
+.filters button.active {
+  color: #fff0d2;
+  background: var(--red);
+}
+
+.search-box {
+  min-width: 16rem;
+  min-height: 2.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: #7c685a;
+  background: #fff8e8;
+}
+
+.search-box input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  color: var(--brown);
+  background: transparent;
+  font-size: 0.7rem;
+}
+
+.result-count {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.5rem 0 0.8rem;
+  color: #765d4c;
+  font-size: 0.56rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.result-count i {
+  width: 2rem;
+  height: 1px;
+  background: var(--line);
+}
+
+.repertoire-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.repertoire-card {
+  overflow: hidden;
+  padding: 1.3rem;
+  border: 1px solid rgba(106, 62, 37, 0.17);
+  border-radius: var(--organic-radius);
+  background: #fffaf1;
+  box-shadow: 0 4px 11px rgba(70, 40, 24, 0.06);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.repertoire-card:hover {
+  box-shadow: 0 7px 15px rgba(70, 40, 24, 0.1);
+  transform: translateY(-2px);
+}
+
+.repertoire-card:nth-child(3n + 2) {
+  color: var(--brown);
+  background: #f0ddba;
+}
+
+.repertoire-card:nth-child(3n + 3) {
+  color: var(--brown);
+  background: #e6cca1;
+}
+
+.repertoire-image {
+  display: none;
+}
+
+.repertoire-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 10, 7, 0.08), rgba(20, 10, 7, 0.2));
+}
+
+.repertoire-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.repertoire-image > span {
+  position: absolute;
+  z-index: 4;
+  top: 0.55rem;
+  left: 0.65rem;
+  color: white;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 0.85rem;
+}
+
+.repertoire-copy {
+  padding: 0;
+}
+
+.repertoire-copy > p {
+  margin: 0 0 0.25rem;
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+.repertoire-copy h3 {
+  margin: 0;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.repertoire-copy > span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.58rem;
+  line-height: 1.35;
+  opacity: 0.8;
+}
+
+.demo-track {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.demo-track i {
+  height: 1px;
+  flex: 1;
+  background: currentColor;
+  opacity: 0.25;
+}
+
+.demo-track small {
+  font-size: 0.48rem;
+  opacity: 0.65;
+}
+
+.empty-state {
+  display: grid;
+  justify-items: center;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.empty-state > .icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  color: var(--red);
+}
+
+.empty-state h2 {
+  margin: 0.8rem 0 0.3rem;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.empty-state p {
+  margin: 0 0 1rem;
+  color: #705b4d;
+  font-size: 0.7rem;
+}
+
+.empty-state button {
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  color: white;
+  background: var(--red);
+  font-size: 0.65rem;
+}
+
+/* Booking page */
+.booking-section {
+  padding: 3rem 0 6rem;
+}
+
+.booking-card {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--organic-radius);
+  background: #fff9eb;
+  box-shadow: 0 11px 24px rgba(68, 38, 24, 0.09);
+}
+
+.booking-main {
+  padding: clamp(2.5rem, 6vw, 5rem);
+  text-align: center;
+}
+
+.booking-main h2 {
+  max-width: 45rem;
+  margin: 0.7rem auto 1rem;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 0.98;
+}
+
+.booking-main > p:not(.eyebrow) {
+  max-width: 38rem;
+  margin: 0 auto;
+  color: #735c4c;
+  font-size: 0.75rem;
+  line-height: 1.65;
+}
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 1.4rem 0;
+}
+
+.event-tags span {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(139, 56, 39, 0.25);
+  border-radius: 999px;
+  color: var(--red);
+  background: #f6e6c8;
+  font-size: 0.55rem;
+}
+
+.booking-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.3rem;
+  color: #fff3d8;
+  background:
+    repeating-linear-gradient(
+      3deg,
+      transparent 0 2rem,
+      rgba(255, 255, 255, 0.03) 2.05rem
+    ),
+    var(--wood);
+}
+
+.booking-aside > .icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  color: #edcd9c;
+}
+
+.booking-aside > p {
+  margin: 0.8rem 0 1.5rem;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 1.8rem;
+  line-height: 1.05;
+}
+
+.booking-aside dl {
+  margin: 0;
+}
+
+.booking-aside dl div {
+  padding: 0.8rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.booking-aside dt {
+  color: #edcfaa;
+  font-size: 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.booking-aside dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.62rem;
+}
+
+.booking-section > .contact-panel-wrap {
+  margin-top: 2.3rem;
+}
+
+/* Footer and utilities */
+.site-footer {
+  color: #fff0d2;
+  background: var(--red-dark);
+}
+
+.footer-inner {
+  min-height: 11rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding-block: 2rem;
+}
+
+.footer-inner .brand {
+  display: flex;
+}
+
+.footer-inner > p {
+  max-width: 22rem;
+  color: #d9bda0;
+  font-size: 0.62rem;
+  line-height: 1.55;
+}
+
+.footer-inner nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+  font-size: 0.6rem;
+}
+
+.floating-whatsapp {
+  position: fixed;
+  z-index: 25;
+  right: 1rem;
+  bottom: 0.7rem;
+}
+
+.not-found {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.not-found > .icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--red);
+}
+
+.not-found h1 {
+  max-width: 40rem;
+  margin: 0.7rem 0 1.5rem;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.not-found a {
+  color: var(--red);
+  font-size: 0.7rem;
+  text-decoration: underline;
+}
+
+@media (max-width: 820px) {
+  .home-booking {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .home-booking .cream-button {
+    width: max-content;
+  }
+
+  .repertoire-tools {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .repertoire-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    width: min(calc(100% - 1.15rem), 72rem);
+  }
+
+  .site-header {
+    height: 4.6rem;
+  }
+
+  .site-header .brand {
+    display: flex;
+    position: absolute;
+    top: calc(4.35rem + env(safe-area-inset-top, 0px));
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+
+  .site-header .brand-bars {
+    display: none;
+  }
+
+  .site-header .brand > span:last-child {
+    width: 14rem;
+    font-size: 1.05rem;
+    line-height: 0.9;
+  }
+
+  .site-header .brand strong {
+    font-size: 1.25rem;
+  }
+
+  .menu-toggle {
+    display: grid;
+    margin-left: 0;
+    margin-top: env(safe-area-inset-top, 0px);
+  }
+
+  .primary-nav {
+    position: absolute;
+    top: calc(4.5rem + env(safe-area-inset-top, 0px));
+    right: 0.6rem;
+    left: 0.6rem;
+    display: none;
+    align-items: stretch;
+    flex-direction: column;
+    padding: 0.6rem;
+    border: 1px solid rgba(255, 240, 215, 0.16);
+    border-radius: 1rem;
+    background: rgba(105, 42, 31, 0.98);
+    box-shadow: 0 12px 24px rgba(51, 22, 15, 0.18);
+  }
+
+  .primary-nav.is-open {
+    display: flex;
+  }
+
+  .page-hero,
+  .page-hero.home-hero {
+    min-height: calc(15.7rem + env(safe-area-inset-top, 0px));
+    padding: calc(6.7rem + env(safe-area-inset-top, 0px)) 0.8rem 4.6rem;
+  }
+
+  .page-hero.home-hero {
+    min-height: calc(16.5rem + env(safe-area-inset-top, 0px));
+    padding-top: calc(7.05rem + env(safe-area-inset-top, 0px));
+  }
+
+  .page-hero h1 {
+    max-width: 17rem;
+    margin-inline: auto;
+    font-size: 1.9rem;
+    line-height: 0.92;
+  }
+
+  .page-hero.home-hero h1 {
+    display: none;
+  }
+
+  .page-hero .hero-inner > p:last-of-type {
+    max-width: 18rem;
+    margin-top: 0.6rem;
+    font-size: 0.58rem;
+    line-height: 1.45;
+  }
+
+  .page-hero .eyebrow {
+    display: none;
+  }
+
+  .hero-wave {
+    height: 3.3rem;
+    bottom: -1.8rem;
+  }
+
+  .contact-panel-wrap {
+    margin-top: -4rem;
+  }
+
+  .contact-panel {
+    width: min(100%, 20.5rem);
+    padding: 0.4rem;
+    border-width: 2px;
+    border-radius: 2.6rem 3.3rem 2.6rem 2.3rem;
+  }
+
+  .contact-panel.is-featured {
+    width: min(100%, 23rem);
+    padding: 0.8rem 0.8rem 1rem;
+    border-radius: 3rem 2.2rem 3rem 2.2rem;
+  }
+
+  .contact-panel a {
+    min-height: 3.7rem;
+    padding: 0.35rem 0.2rem;
+  }
+
+  .contact-panel .icon {
+    width: 0.85rem;
+    height: 0.85rem;
+  }
+
+  .contact-panel span {
+    font-size: 0.45rem;
+  }
+
+  .contact-panel strong {
+    max-width: 8rem;
+    font-size: 0.54rem;
+  }
+
+  .contact-panel-action {
+    gap: 0.65rem;
+    padding-top: 0.7rem;
+  }
+
+  .contact-panel-action p {
+    max-width: 10rem;
+    font-size: 0.52rem;
+  }
+
+  .contact-panel-action .whatsapp-button {
+    min-width: 10rem;
+    min-height: 2.35rem;
+    padding-inline: 1.15rem;
+    font-size: 0.58rem;
+  }
+
+  .featured-section {
+    padding-top: 2.5rem;
+  }
+
+  .section-title {
+    max-width: 18rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title h2 {
+    font-size: 1.55rem;
+    line-height: 1;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .featured-card,
+  .featured-card:nth-child(1),
+  .featured-card:nth-child(2),
+  .featured-card:nth-child(3) {
+    width: min(100%, 22rem);
+    margin-inline: auto;
+    transform: none;
+  }
+
+  .featured-copy h3 {
+    font-size: 1.35rem;
+  }
+
+  .featured-copy > span {
+    font-size: 0.62rem;
+  }
+
+  .home-booking {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 2rem 1.4rem;
+  }
+
+  .filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: -0.55rem;
+    padding: 0.2rem 0.55rem 0.5rem;
+    scrollbar-width: none;
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filters button {
+    flex: 0 0 auto;
+  }
+
+  .repertoire-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .repertoire-card:nth-child(n) {
+    transform: none;
+  }
+
+  .booking-card {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-main {
+    padding: 3rem 1.2rem;
+  }
+
+  .booking-main h2 {
+    font-size: 2.75rem;
+  }
+
+  .booking-aside {
+    min-height: 19rem;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-bottom: 5rem;
+  }
+
+  .footer-inner nav {
+    align-items: flex-start;
+  }
+
+  .floating-whatsapp {
+    right: 0.65rem;
+    bottom: 0.55rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .floating-whatsapp {
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+  }
+
+  .floating-whatsapp span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================================================
+   Sección de Videos de Presentación (Melodías donde las maderas cantan)
+   ========================================================================== */
+.videos-section {
+  padding: 3.5rem 0 5rem;
+}
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  border: 1px solid var(--line);
+  background: #fffdfa;
+  box-shadow: 0 6px 18px rgba(70, 40, 24, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(70, 40, 24, 0.15);
+}
+
+.video-iframe-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #1e110b;
+}
+
+.video-iframe-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-info {
+  padding: 1rem 1.15rem 1.25rem;
+}
+
+.video-info h3 {
+  margin: 0 0 0.35rem;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--brown);
+}
+
+.video-info p {
+  margin: 0;
+  font-size: 0.65rem;
+  color: #795d4d;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   Banda Fotográfica y Presentación de la Orquesta
+   ========================================================================== */
+.presentation-section {
+  padding: 2.5rem 0 4.5rem;
+}
+
+.presentation-card {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 2rem;
+  border-radius: var(--organic-radius);
+  border: 1px solid var(--line);
+  background: #fffcf5;
+  box-shadow: 0 8px 24px rgba(70, 40, 24, 0.08);
+}
+
+.presentation-img-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.4rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  aspect-ratio: 16 / 10;
+}
+
+.presentation-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.presentation-card:hover .presentation-img-wrap img {
+  transform: scale(1.03);
+}
+
+.presentation-badge {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 0.8rem;
+  background: rgba(48, 32, 25, 0.85);
+  backdrop-filter: blur(4px);
+  color: #fff4da;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.presentation-text h2 {
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 0.4rem 0 1rem;
+  color: var(--brown);
+}
+
+.presentation-text p {
+  font-size: 0.72rem;
+  color: #6d5445;
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+}
+
+/* ==========================================================================
+   Cenefa Chiapaneca Artesanal
+   ========================================================================== */
+.cenefa-marqueteria {
+  width: 100%;
+  height: 12px;
+  background: repeating-linear-gradient(
+    45deg,
+    #9f402e 0,
+    #9f402e 10px,
+    #e7d2a8 10px,
+    #e7d2a8 20px,
+    #302019 20px,
+    #302019 30px,
+    #e7d2a8 30px,
+    #e7d2a8 40px
+  );
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Reproductor Interactivo y Ecualizador de Audio
+   ========================================================================== */
+.play-btn-interactive {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: var(--red);
+  color: #fff4da;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 4px 10px rgba(159, 64, 46, 0.3);
+  flex-shrink: 0;
+}
+
+.play-btn-interactive:hover {
+  transform: scale(1.08);
+  background: var(--red-dark);
+  box-shadow: 0 6px 14px rgba(159, 64, 46, 0.4);
+}
+
+.play-btn-interactive.is-playing {
+  background: var(--green);
+  box-shadow: 0 4px 12px rgba(54, 135, 73, 0.4);
+}
+
+.repertoire-card.is-active-track {
+  border-color: rgba(159, 64, 46, 0.45);
+  background: #fff8eb;
+  box-shadow: 0 8px 24px rgba(159, 64, 46, 0.16);
+  transform: translateY(-2px);
+}
+
+.equalizer-anim {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.equalizer-anim span {
+  width: 3px;
+  background: var(--green);
+  border-radius: 1px;
+  animation: eq-bounce 800ms ease-in-out infinite alternate;
+}
+
+.equalizer-anim span:nth-child(1) { height: 40%; animation-delay: 0ms; }
+.equalizer-anim span:nth-child(2) { height: 95%; animation-delay: 200ms; }
+.equalizer-anim span:nth-child(3) { height: 60%; animation-delay: 400ms; }
+.equalizer-anim span:nth-child(4) { height: 80%; animation-delay: 150ms; }
+
+@keyframes eq-bounce {
+  0% { height: 25%; }
+  100% { height: 100%; }
+}
+
+/* Barra Flotante Mini Reproductor */
+.mini-player-bar {
+  position: fixed;
+  z-index: 40;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(calc(100% - 2rem), 42rem);
+  background: rgba(48, 32, 25, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(231, 210, 168, 0.25);
+  border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  color: #fff4da;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  animation: slide-up 240ms ease-out;
+}
+
+@keyframes slide-up {
+  from { transform: translate(-50%, 30px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+.mini-player-track {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.mini-player-title {
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff4da;
+}
+
+.mini-player-genre {
+  font-size: 0.52rem;
+  color: #e7d2a8;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mini-player-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mini-player-btn {
+  background: transparent;
+  border: 0;
+  color: #fff4da;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  border-radius: 50%;
+  transition: opacity 160ms, transform 160ms;
+}
+
+.mini-player-btn:hover {
+  transform: scale(1.1);
+  color: #e7d2a8;
+}
+
+.mini-player-close {
+  opacity: 0.65;
+  font-size: 1rem;
+}
+.mini-player-close:hover {
+  opacity: 1;
+}
+
+/* Category Badges */
+.category-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.category-badge.badge-boleros {
+  background: #f7e6d9;
+  color: #8c3822;
+}
+
+.category-badge.badge-vals {
+  background: #f8f1d7;
+  color: #85611f;
+}
+
+.category-badge.badge-cumbias {
+  background: #e1f2e5;
+  color: #236c34;
+}
+
+.category-badge.badge-zapateados {
+  background: #fae4dd;
+  color: #9f402e;
+}
+
+.category-badge.badge-corridos {
+  background: #e7e5dc;
+  color: #4a4539;
+}
+
+/* Event Chips en Booking */
+.event-chip-btn {
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(139, 56, 39, 0.3);
+  border-radius: 999px;
+  color: var(--red);
+  background: #fbf1de;
+  font-size: 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 160ms ease;
+}
+
+.event-chip-btn:hover,
+.event-chip-btn.is-selected {
+  background: var(--red);
+  color: #fff4da;
+  border-color: var(--red);
+  transform: translateY(-1px);
+}
+
+/* Botón Facebook y Enlace */
+.facebook-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  background: #1877f2;
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 600;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 4px 10px rgba(24, 119, 242, 0.25);
+}
+
+.facebook-btn:hover {
+  transform: translateY(-2px);
+  background: #1464cc;
+  box-shadow: 0 6px 14px rgba(24, 119, 242, 0.35);
+}
+
+/* Media Queries para Videos y Presentación */
+@media (max-width: 900px) {
+  .videos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .presentation-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .videos-grid {
+    grid-template-columns: 1fr;
+  }
+  .mini-player-bar {
+    bottom: 4.5rem;
+    padding: 0.5rem 0.85rem;
+  }
+}
