@@ -23,7 +23,7 @@ function getWhatsAppUrl(customText?: string) {
   return `https://wa.me/${BASE_WHATSAPP_NUMBER}?text=${text}`;
 }
 
-const FACEBOOK_URL = "https://www.facebook.com/heri.gomez.3154";
+const FACEBOOK_URL = "https://www.facebook.com/share/1CPRKeLhvp/";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=2a.+OTE.+SUR+%23758+B.+San+Antonio,+Ocozocoautla+de+Espinosa,+Chiapas";
 
@@ -261,6 +261,15 @@ function Header({
           >
             Contacto / Cotizar
           </a>
+          <a
+            href={FACEBOOK_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+          >
+            <Icon name="facebook" />
+            <span>Facebook</span>
+          </a>
         </nav>
       </div>
     </header>
@@ -377,7 +386,25 @@ function ContactPanel({ featured = false }: { featured?: boolean }) {
               Lleva la tradición, alegría y distinción de la marimba orquesta a
               tu celebración.
             </p>
-            <WhatsAppButton />
+            <div
+              style={{
+                display: "flex",
+                gap: "0.6rem",
+                flexWrap: "wrap",
+                justifyContent: "center",
+              }}
+            >
+              <WhatsAppButton />
+              <a
+                href={FACEBOOK_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="facebook-btn"
+              >
+                <Icon name="facebook" />
+                <span>Facebook Oficial</span>
+              </a>
+            </div>
           </div>
         )}
       </section>
