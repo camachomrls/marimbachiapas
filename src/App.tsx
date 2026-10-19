@@ -354,8 +354,9 @@ function PageHero({
           <div
             style={{
               display: "flex",
+              alignItems: "center",
               justifyContent: "center",
-              gap: "0.8rem",
+              gap: "1.15rem",
               marginTop: "1.4rem",
               flexWrap: "wrap",
             }}
@@ -432,9 +433,9 @@ function ContactPanel({ featured = false }: { featured?: boolean }) {
             <div
               style={{
                 display: "flex",
-                gap: "0.6rem",
-                flexWrap: "wrap",
+                alignItems: "center",
                 justifyContent: "center",
+                gap: "1rem",
               }}
             >
               <WhatsAppButton />
