@@ -35,6 +35,32 @@ function normalizeText(value: string) {
     .trim();
 }
 
+function buildShuffledQueue(
+  songs: Song[],
+  firstSong?: Song | null,
+  avoidFirstId?: string,
+): Song[] {
+  const pool = firstSong
+    ? songs.filter((s) => s.id !== firstSong.id)
+    : [...songs];
+
+  for (let i = pool.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = pool[i];
+    pool[i] = pool[j];
+    pool[j] = temp;
+  }
+
+  if (!firstSong && avoidFirstId && pool.length > 1 && pool[0].id === avoidFirstId) {
+    const swapIdx = 1 + Math.floor(Math.random() * (pool.length - 1));
+    const temp = pool[0];
+    pool[0] = pool[swapIdx];
+    pool[swapIdx] = temp;
+  }
+
+  return firstSong ? [firstSong, ...pool] : pool;
+}
+
 function Icon({
   name,
   className = "",
@@ -54,7 +80,9 @@ function Icon({
     | "search"
     | "facebook"
     | "close"
-    | "volume";
+    | "volume"
+    | "shuffle"
+    | "skip";
   className?: string;
 }) {
   const paths: Record<typeof name, ReactNode> = {
@@ -125,6 +153,21 @@ function Icon({
         <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
         <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
         <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+      </>
+    ),
+    shuffle: (
+      <>
+        <path d="M16 3h5v5" />
+        <path d="M4 20 21 3" />
+        <path d="M21 16v5h-5" />
+        <path d="m15 15 6 6" />
+        <path d="M4 4l5 5" />
+      </>
+    ),
+    skip: (
+      <>
+        <polygon points="5 4 15 12 5 20 5 4" />
+        <line x1="19" y1="5" x2="19" y2="19" />
       </>
     ),
   };
@@ -508,12 +551,22 @@ function PresentationBanner({
 function MiniPlayerBar({
   currentSong,
   isPlaying,
+  isShuffleMode,
+  shuffleIndex,
+  totalSongs,
   onTogglePlay,
+  onNextTrack,
+  onToggleShuffleMode,
   onClose,
 }: {
   currentSong: Song;
   isPlaying: boolean;
+  isShuffleMode: boolean;
+  shuffleIndex: number;
+  totalSongs: number;
   onTogglePlay: () => void;
+  onNextTrack: () => void;
+  onToggleShuffleMode: () => void;
   onClose: () => void;
 }) {
   return (
@@ -535,13 +588,42 @@ function MiniPlayerBar({
       </div>
 
       <div className="mini-player-track">
-        <span className="mini-player-title">{currentSong.title}</span>
+        <div className="mini-player-title-row">
+          <span className="mini-player-title">{currentSong.title}</span>
+          {isShuffleMode && (
+            <span className="mini-player-shuffle-pill">
+              Aleatorio {shuffleIndex + 1}/{totalSongs}
+            </span>
+          )}
+        </div>
         <span className="mini-player-genre">
-          {currentSong.genreLabel} · Marimba Orquesta Chiapas
+          {currentSong.genreLabel} ·{" "}
+          {isShuffleMode
+            ? "Reproducción continua sin repetir"
+            : "Marimba Orquesta Chiapas"}
         </span>
       </div>
 
       <div className="mini-player-controls">
+        <button
+          type="button"
+          className={`mini-player-btn ${isShuffleMode ? "is-shuffle-active" : ""}`}
+          onClick={onToggleShuffleMode}
+          aria-pressed={isShuffleMode}
+          aria-label={
+            isShuffleMode
+              ? "Modo aleatorio continuo activado"
+              : "Activar modo aleatorio continuo"
+          }
+          title={
+            isShuffleMode
+              ? "Modo aleatorio sin repetición activo"
+              : "Activar reproducción aleatoria continua"
+          }
+        >
+          <Icon name="shuffle" />
+        </button>
+
         <button
           type="button"
           className="play-btn-interactive"
@@ -550,6 +632,16 @@ function MiniPlayerBar({
           aria-label={isPlaying ? "Pausar melodía" : "Reproducir melodía"}
         >
           <Icon name={isPlaying ? "pause" : "play"} />
+        </button>
+
+        <button
+          type="button"
+          className="mini-player-btn"
+          onClick={onNextTrack}
+          aria-label="Siguiente melodía aleatoria"
+          title="Siguiente melodía sin pausar"
+        >
+          <Icon name="skip" />
         </button>
 
         <button
@@ -563,6 +655,116 @@ function MiniPlayerBar({
         </button>
       </div>
     </aside>
+  );
+}
+
+function ShuffleDiscoveryCard({
+  currentSong,
+  isPlaying,
+  isShuffleMode,
+  shuffleIndex,
+  totalSongs,
+  nextSong,
+  onStartOrSkipShuffle,
+  onTogglePlayCurrent,
+  compact = false,
+}: {
+  currentSong: Song | null;
+  isPlaying: boolean;
+  isShuffleMode: boolean;
+  shuffleIndex: number;
+  totalSongs: number;
+  nextSong: Song | null;
+  onStartOrSkipShuffle: () => void;
+  onTogglePlayCurrent: () => void;
+  compact?: boolean;
+}) {
+  const isShuffleActive = isShuffleMode && currentSong !== null;
+
+  return (
+    <div
+      className={`shuffle-discovery-card ${compact ? "is-compact" : ""} ${
+        isShuffleActive && isPlaying ? "is-playing-shuffle" : ""
+      }`}
+    >
+      <div className="shuffle-card-decor" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+        <i />
+        <i />
+      </div>
+
+      <div className="shuffle-card-copy">
+        <div className="shuffle-card-eyebrow-row">
+          <span className="shuffle-badge-pill">
+            <Icon name="shuffle" />
+            <span>
+              {isShuffleActive
+                ? `Modo Aleatorio Activo · Pista ${shuffleIndex + 1} de ${totalSongs}`
+                : "Modo Descubrimiento · Sin Pausas"}
+            </span>
+          </span>
+          {isShuffleActive && isPlaying && (
+            <div className="equalizer-anim" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+          )}
+        </div>
+
+        <h3>
+          {isShuffleActive
+            ? `Sonando: ${currentSong.title}`
+            : "Radio Marimba en Aleatorio Continuo"}
+        </h3>
+
+        <p>
+          {isShuffleActive ? (
+            <>
+              <strong>{currentSong.genreLabel}</strong> — {currentSong.description}
+              {nextSong && (
+                <span className="shuffle-next-hint">
+                  {" "}
+                  · Siguiente en fila: <em>{nextSong.title}</em>
+                </span>
+              )}
+            </>
+          ) : (
+            `Descubre y escucha nuestras ${totalSongs} melodías al azar de forma ininterrumpida. Todas las canciones se reproducen una tras otra sin repetirse hasta recorrer todo el repertorio.`
+          )}
+        </p>
+      </div>
+
+      <div className="shuffle-card-actions">
+        <button
+          type="button"
+          className="shuffle-primary-btn"
+          onClick={onStartOrSkipShuffle}
+        >
+          <Icon name={isShuffleActive ? "skip" : "shuffle"} />
+          <span>
+            {isShuffleActive
+              ? "Otra canción aleatoria"
+              : "Reproducir en aleatorio"}
+          </span>
+        </button>
+
+        {isShuffleActive && (
+          <button
+            type="button"
+            className="shuffle-secondary-btn"
+            onClick={onTogglePlayCurrent}
+            aria-label={isPlaying ? "Pausar reproducción" : "Reanudar reproducción"}
+          >
+            <Icon name={isPlaying ? "pause" : "play"} />
+            <span>{isPlaying ? "Pausar" : "Reanudar"}</span>
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -612,7 +814,7 @@ function SongCardItem({
         </span>
         <span
           style={{
-            fontSize: "0.6rem",
+            fontSize: "0.76rem",
             color: "#9f7d67",
             fontWeight: 600,
           }}
@@ -652,7 +854,7 @@ function SongCardItem({
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span
               style={{
-                fontSize: "0.62rem",
+                fontSize: "0.85rem",
                 fontWeight: 600,
                 color: isActive && isPlaying ? "var(--green)" : "var(--brown)",
               }}
@@ -663,7 +865,7 @@ function SongCardItem({
                 ? "Pausado"
                 : "Escuchar audio"}
             </span>
-            <small style={{ fontSize: "0.5rem", color: "#8a6f5e" }}>
+            <small style={{ fontSize: "0.74rem", color: "#8a6f5e" }}>
               Audio en vivo
             </small>
           </div>
@@ -686,12 +888,20 @@ function HomePage({
   onNavigate,
   currentSong,
   isPlaying,
+  isShuffleMode,
+  shuffleIndex,
+  nextSong,
   onTogglePlay,
+  onStartOrSkipShuffle,
 }: {
   onNavigate: (route: string) => void;
   currentSong: Song | null;
   isPlaying: boolean;
+  isShuffleMode: boolean;
+  shuffleIndex: number;
+  nextSong: Song | null;
   onTogglePlay: (song: Song) => void;
+  onStartOrSkipShuffle: () => void;
 }) {
   // Top featured tracks from distinct genres
   const featuredSongs = useMemo(() => {
@@ -725,6 +935,21 @@ function HomePage({
             title="Muestras Destacadas de Nuestro Repertorio"
             description="Escucha la calidad y virtuosismo con la que amenizamos tus momentos más memorables"
           />
+
+          <ShuffleDiscoveryCard
+            compact
+            currentSong={currentSong}
+            isPlaying={isPlaying}
+            isShuffleMode={isShuffleMode}
+            shuffleIndex={shuffleIndex}
+            totalSongs={songsData.length}
+            nextSong={nextSong}
+            onStartOrSkipShuffle={onStartOrSkipShuffle}
+            onTogglePlayCurrent={() => {
+              if (currentSong) onTogglePlay(currentSong);
+            }}
+          />
+
           <div className="repertoire-grid">
             {featuredSongs.map((song, index) => (
               <SongCardItem
@@ -789,11 +1014,19 @@ function HomePage({
 function RepertoirePage({
   currentSong,
   isPlaying,
+  isShuffleMode,
+  shuffleIndex,
+  nextSong,
   onTogglePlay,
+  onStartOrSkipShuffle,
 }: {
   currentSong: Song | null;
   isPlaying: boolean;
+  isShuffleMode: boolean;
+  shuffleIndex: number;
+  nextSong: Song | null;
   onTogglePlay: (song: Song) => void;
+  onStartOrSkipShuffle: () => void;
 }) {
   const [genre, setGenre] =
     useState<(typeof genreFilters)[number]>("Todo");
@@ -822,6 +1055,19 @@ function RepertoirePage({
       <div className="cenefa-marqueteria" aria-hidden="true" />
 
       <section className="repertoire-section shell">
+        <ShuffleDiscoveryCard
+          currentSong={currentSong}
+          isPlaying={isPlaying}
+          isShuffleMode={isShuffleMode}
+          shuffleIndex={shuffleIndex}
+          totalSongs={songsData.length}
+          nextSong={nextSong}
+          onStartOrSkipShuffle={onStartOrSkipShuffle}
+          onTogglePlayCurrent={() => {
+            if (currentSong) onTogglePlay(currentSong);
+          }}
+        />
+
         <div className="repertoire-tools">
           <div className="filters" role="tablist" aria-label="Filtrar repertorio por género">
             {genreFilters.map((item) => {
@@ -1103,7 +1349,7 @@ function Footer({ onNavigate }: { onNavigate: (route: string) => void }) {
           borderTop: "1px solid rgba(255, 240, 215, 0.12)",
           padding: "1rem 0",
           textAlign: "center",
-          fontSize: "0.58rem",
+          fontSize: "0.78rem",
           color: "#d9bda0",
         }}
       >
@@ -1141,7 +1387,54 @@ export default function App() {
 
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [isShuffleMode, setIsShuffleMode] = useState<boolean>(false);
+  const [shuffleQueue, setShuffleQueue] = useState<Song[]>([]);
+  const [shuffleIndex, setShuffleIndex] = useState<number>(0);
+
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const currentSongRef = useRef<Song | null>(null);
+  const isShuffleModeRef = useRef<boolean>(false);
+  const shuffleQueueRef = useRef<Song[]>([]);
+  const shuffleIndexRef = useRef<number>(0);
+
+  const playSongDirect = useCallback((song: Song) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    currentSongRef.current = song;
+    setCurrentSong(song);
+    audio.src = encodeURI(song.src);
+    audio.currentTime = 0;
+    audio
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch((err) => console.error("Error al iniciar audio:", err));
+  }, []);
+
+  const advanceToNextShuffleTrack = useCallback(() => {
+    let queue = shuffleQueueRef.current;
+    let nextIdx = shuffleIndexRef.current + 1;
+
+    if (queue.length === 0 || nextIdx >= queue.length) {
+      queue = buildShuffledQueue(songsData, null, currentSongRef.current?.id);
+      nextIdx = 0;
+      shuffleQueueRef.current = queue;
+      setShuffleQueue(queue);
+    }
+
+    shuffleIndexRef.current = nextIdx;
+    setShuffleIndex(nextIdx);
+
+    if (!isShuffleModeRef.current) {
+      isShuffleModeRef.current = true;
+      setIsShuffleMode(true);
+    }
+
+    const nextSong = queue[nextIdx];
+    if (nextSong) {
+      playSongDirect(nextSong);
+    }
+  }, [playSongDirect]);
 
   // Initialize and handle global single-audio manager
   useEffect(() => {
@@ -1150,11 +1443,14 @@ export default function App() {
     audioRef.current = audio;
 
     const handleEnded = () => {
-      setIsPlaying(false);
+      // Automatically continue playing without pausing in random non-repeating order
+      advanceToNextShuffleTrack();
     };
 
     const handlePause = () => {
-      setIsPlaying(false);
+      if (!audio.ended) {
+        setIsPlaying(false);
+      }
     };
 
     const handlePlay = () => {
@@ -1179,7 +1475,51 @@ export default function App() {
       audio.pause();
       audio.src = "";
     };
-  }, []);
+  }, [advanceToNextShuffleTrack]);
+
+  const handleStartOrSkipShuffle = useCallback(() => {
+    if (!isShuffleModeRef.current || shuffleQueueRef.current.length === 0) {
+      const newQueue = buildShuffledQueue(
+        songsData,
+        null,
+        currentSongRef.current?.id,
+      );
+      shuffleQueueRef.current = newQueue;
+      shuffleIndexRef.current = 0;
+      isShuffleModeRef.current = true;
+
+      setShuffleQueue(newQueue);
+      setShuffleIndex(0);
+      setIsShuffleMode(true);
+
+      if (newQueue[0]) {
+        playSongDirect(newQueue[0]);
+      }
+    } else {
+      advanceToNextShuffleTrack();
+    }
+  }, [advanceToNextShuffleTrack, playSongDirect]);
+
+  const handleToggleShuffleMode = useCallback(() => {
+    if (isShuffleModeRef.current) {
+      isShuffleModeRef.current = false;
+      setIsShuffleMode(false);
+    } else {
+      const active = currentSongRef.current;
+      const newQueue = buildShuffledQueue(songsData, active);
+      shuffleQueueRef.current = newQueue;
+      shuffleIndexRef.current = 0;
+      isShuffleModeRef.current = true;
+
+      setShuffleQueue(newQueue);
+      setShuffleIndex(0);
+      setIsShuffleMode(true);
+
+      if (!active && newQueue[0]) {
+        playSongDirect(newQueue[0]);
+      }
+    }
+  }, [playSongDirect]);
 
   const handleTogglePlay = useCallback(
     (song: Song) => {
@@ -1196,17 +1536,41 @@ export default function App() {
             .catch((err) => console.error("Error al reanudar audio:", err));
         }
       } else {
-        audio.pause();
-        audio.currentTime = 0;
-        audio.src = encodeURI(song.src);
-        setCurrentSong(song);
-        audio
-          .play()
-          .then(() => setIsPlaying(true))
-          .catch((err) => console.error("Error al iniciar audio:", err));
+        // Keep non-repeating queue synchronized when user picks a specific song
+        if (isShuffleModeRef.current && shuffleQueueRef.current.length > 0) {
+          const queue = [...shuffleQueueRef.current];
+          const curIdx = shuffleIndexRef.current;
+          const foundIdx = queue.findIndex((s) => s.id === song.id);
+
+          if (foundIdx > curIdx) {
+            const targetIdx = curIdx + 1;
+            const temp = queue[targetIdx];
+            queue[targetIdx] = queue[foundIdx];
+            queue[foundIdx] = temp;
+            shuffleQueueRef.current = queue;
+            shuffleIndexRef.current = targetIdx;
+            setShuffleQueue(queue);
+            setShuffleIndex(targetIdx);
+          } else {
+            const rebuilt = buildShuffledQueue(songsData, song);
+            shuffleQueueRef.current = rebuilt;
+            shuffleIndexRef.current = 0;
+            setShuffleQueue(rebuilt);
+            setShuffleIndex(0);
+          }
+        } else {
+          // Prepare a non-repeating shuffle queue starting from this song so when it finishes it continues automatically
+          const rebuilt = buildShuffledQueue(songsData, song);
+          shuffleQueueRef.current = rebuilt;
+          shuffleIndexRef.current = 0;
+          setShuffleQueue(rebuilt);
+          setShuffleIndex(0);
+        }
+
+        playSongDirect(song);
       }
     },
-    [currentSong, isPlaying],
+    [currentSong, isPlaying, playSongDirect],
   );
 
   const handleClosePlayer = useCallback(() => {
@@ -1215,8 +1579,11 @@ export default function App() {
       audio.pause();
       audio.currentTime = 0;
     }
+    currentSongRef.current = null;
+    isShuffleModeRef.current = false;
     setCurrentSong(null);
     setIsPlaying(false);
+    setIsShuffleMode(false);
   }, []);
 
   const handleNavigate = useCallback((route: string) => {
@@ -1235,6 +1602,12 @@ export default function App() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
+  const nextSongInQueue = useMemo(() => {
+    if (!isShuffleMode || shuffleQueue.length === 0) return null;
+    const nextIdx = shuffleIndex + 1;
+    return nextIdx < shuffleQueue.length ? shuffleQueue[nextIdx] : null;
+  }, [isShuffleMode, shuffleQueue, shuffleIndex]);
+
   const renderCurrentPage = () => {
     if (currentRoute === "/") {
       return (
@@ -1242,7 +1615,11 @@ export default function App() {
           onNavigate={handleNavigate}
           currentSong={currentSong}
           isPlaying={isPlaying}
+          isShuffleMode={isShuffleMode}
+          shuffleIndex={shuffleIndex}
+          nextSong={nextSongInQueue}
           onTogglePlay={handleTogglePlay}
+          onStartOrSkipShuffle={handleStartOrSkipShuffle}
         />
       );
     }
@@ -1251,7 +1628,11 @@ export default function App() {
         <RepertoirePage
           currentSong={currentSong}
           isPlaying={isPlaying}
+          isShuffleMode={isShuffleMode}
+          shuffleIndex={shuffleIndex}
+          nextSong={nextSongInQueue}
           onTogglePlay={handleTogglePlay}
+          onStartOrSkipShuffle={handleStartOrSkipShuffle}
         />
       );
     }
@@ -1270,13 +1651,29 @@ export default function App() {
       <Footer onNavigate={handleNavigate} />
 
       {/* Persistent Floating Mini-Player when a song is selected */}
-      {currentSong && (
+      {currentSong ? (
         <MiniPlayerBar
           currentSong={currentSong}
           isPlaying={isPlaying}
+          isShuffleMode={isShuffleMode}
+          shuffleIndex={shuffleIndex}
+          totalSongs={songsData.length}
           onTogglePlay={() => handleTogglePlay(currentSong)}
+          onNextTrack={advanceToNextShuffleTrack}
+          onToggleShuffleMode={handleToggleShuffleMode}
           onClose={handleClosePlayer}
         />
+      ) : (
+        <button
+          type="button"
+          className="floating-shuffle-btn"
+          onClick={handleStartOrSkipShuffle}
+          aria-label="Reproducir repertorio en modo aleatorio continuo"
+          title="Escuchar todas las canciones en modo aleatorio sin pausas"
+        >
+          <Icon name="shuffle" />
+          <span>Modo Aleatorio</span>
+        </button>
       )}
 
       {/* Floating WhatsApp CTA */}

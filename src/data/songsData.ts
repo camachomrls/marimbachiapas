@@ -191,6 +191,30 @@ export const songsData: Song[] = [
     description: "Vals poético y cadencioso de profunda belleza sureña.",
     src: "/marimba_chiapas_vol1/09 Estrellita del sur.mp3",
   },
+  {
+    id: "vals-ocozocoautla",
+    title: "Vals Ocozocoautla",
+    genre: "Vals y rancheras",
+    genreLabel: "Vals",
+    description: "Vals emblemático dedicado con orgullo a nuestra tierra, Ocozocoautla de Espinosa.",
+    src: "/Bailes/11 Vals Ocozocoautla.mp3",
+  },
+  {
+    id: "paloma-querida",
+    title: "Paloma Querida",
+    genre: "Vals y rancheras",
+    genreLabel: "Ranchera",
+    description: "Ranchera romántica e inolvidable interpretada con la calidez de la marimba orquesta.",
+    src: "/Bailes/07 Paloma querida.mp3",
+  },
+  {
+    id: "tu-y-las-nubes",
+    title: "Tú y las Nubes",
+    genre: "Vals y rancheras",
+    genreLabel: "Ranchera",
+    description: "Clásico ranchero lleno de sentimiento para cantar y disfrutar en familia.",
+    src: "/Bailes/09 Tu y las nubes.mp3",
+  },
 
   // =========================================================================
   // CORRIDOS Y PASOS DOBLES
@@ -447,6 +471,14 @@ export const songsData: Song[] = [
     description: "Clásico internacional llevado al compás rítmico bailable.",
     src: "/Bailes/02 Nunca en Domingo.mp3",
   },
+  {
+    id: "mi-pobre-corazon",
+    title: "Mi Pobre Corazón",
+    genre: "Cumbias y mambos",
+    genreLabel: "Cumbia",
+    description: "Cumbia alegre y guapachosa que invita a bailar desde el primer compás.",
+    src: "/Bailes/03 Hay mi pobre corazon.mp3",
+  },
 
   // =========================================================================
   // ZAPATEADOS (CARNAVALEROS, ZOQUES Y TRADICIONALES)
@@ -642,5 +674,53 @@ export const songsData: Song[] = [
     genreLabel: "Zapateado Sincopado / Huapango",
     description: "Zapateado sincopado de gran colorido y ritmo folclórico chiapaneco.",
     src: "/marimba chiapas exitos romanticos/Tu enamorado.mp3",
+  },
+  {
+    id: "cerro-de-san-bartolo",
+    title: "Cerro de San Bartolo",
+    genre: "Zapateados",
+    genreLabel: "Zapateado Tradicional",
+    description: "Zapateado tradicional chiapaneco lleno de vigor y raíces regionales.",
+    src: "/marimba_chiapas_8_zapateaditos/01 Cerro de San Bartolo.mp3",
+  },
+  {
+    id: "el-caballito",
+    title: "El Caballito",
+    genre: "Zapateados",
+    genreLabel: "Zapateado Alegre",
+    description: "Ritmo ágil y festivo en las maderas que anima el zapateo en cada celebración.",
+    src: "/marimba_chiapas_8_zapateaditos/03 El Caballito.mp3",
+  },
+  {
+    id: "el-campesino",
+    title: "El Campesino",
+    genre: "Zapateados",
+    genreLabel: "Zapateado Chiapaneco",
+    description: "Son tradicional que celebra la alegría y el espíritu de la tierra chiapaneca.",
+    src: "/marimba_chiapas_8_zapateaditos/04 El Campesino.mp3",
+  },
+  {
+    id: "la-marucha",
+    title: "La Marucha",
+    genre: "Zapateados",
+    genreLabel: "Zapateado Tradicional",
+    description: "Pieza pícara y cadenciosa del repertorio clásico de marimba.",
+    src: "/marimba_chiapas_8_zapateaditos/06 La Marucha.mp3",
+  },
+  {
+    id: "popurri-zoque-coiteco",
+    title: "Popurrí Zoque Coiteco (La Cotorra y El Caballo)",
+    genre: "Zapateados",
+    genreLabel: "Zapateado Zoque",
+    description: "Popurrí tradicional coiteco que reúne la alegría de La Cotorra y El Caballo.",
+    src: "/marimba_chiapas_8_zapateaditos/07 Popurri Zoque Coiteco.mp3",
+  },
+  {
+    id: "san-bernabe",
+    title: "San Bernabé",
+    genre: "Zapateados",
+    genreLabel: "Zapateado Carnavalero",
+    description: "Son emblemático de las festividades y el carnaval tradicional zoque de Coita.",
+    src: "/marimba_chiapas_8_zapateaditos/08 San Bernabe.mp3",
   },
 ];
