@@ -26,6 +26,8 @@ function getWhatsAppUrl(customText?: string) {
 }
 
 const FACEBOOK_URL = "https://www.facebook.com/share/1CPRKeLhvp/";
+const TIKTOK_URL =
+  "https://www.tiktok.com/@marimba_chiapas?is_from_webapp=1&sender_device=pc";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=2a.+OTE.+SUR+%23758+B.+San+Antonio,+Ocozocoautla+de+Espinosa,+Chiapas";
 
@@ -130,6 +132,7 @@ function Icon({
     | "pause"
     | "search"
     | "facebook"
+    | "tiktok"
     | "close"
     | "volume"
     | "shuffle"
@@ -198,6 +201,7 @@ function Icon({
     facebook: (
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     ),
+    tiktok: <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />,
     close: <path d="M18 6 6 18M6 6l12 12" />,
     volume: (
       <>
@@ -368,6 +372,15 @@ function Header({
             <Icon name="facebook" />
             <span>Facebook</span>
           </a>
+          <a
+            href={TIKTOK_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+          >
+            <Icon name="tiktok" />
+            <span>TikTok</span>
+          </a>
         </nav>
       </div>
     </header>
@@ -504,6 +517,7 @@ function ContactPanel({ featured = false }: { featured?: boolean }) {
             <div
               style={{
                 display: "flex",
+                flexWrap: "wrap",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "1rem",
@@ -518,6 +532,15 @@ function ContactPanel({ featured = false }: { featured?: boolean }) {
               >
                 <Icon name="facebook" />
                 <span>Facebook Oficial</span>
+              </a>
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="tiktok-btn"
+              >
+                <Icon name="tiktok" />
+                <span>TikTok Oficial</span>
               </a>
             </div>
           </div>
@@ -1257,6 +1280,15 @@ function BookingPage() {
                 <Icon name="facebook" />
                 <span>Facebook Oficial</span>
               </a>
+              <a
+                href={TIKTOK_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="tiktok-btn"
+              >
+                <Icon name="tiktok" />
+                <span>TikTok Oficial</span>
+              </a>
             </div>
           </div>
 
@@ -1358,6 +1390,15 @@ function Footer({ onNavigate }: { onNavigate: (route: string) => void }) {
           >
             <Icon name="facebook" />
             <span>Facebook Oficial</span>
+          </a>
+          <a
+            href={TIKTOK_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem" }}
+          >
+            <Icon name="tiktok" />
+            <span>TikTok Oficial</span>
           </a>
         </nav>
       </div>

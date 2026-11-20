@@ -32,7 +32,7 @@ export const songsData: Song[] = [
     title: "Así",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Bolero clásico con la calidez inconfundible de las maderas chiapanecas.",
+    description: "Bolero de María Grever ejecutado en formato de marimba orquesta; su cadencia romántica y fraseo pausado acompañan la recepción o la comida.",
     src: "/Bailes/9. ASI.MP3",
   },
   {
@@ -40,7 +40,7 @@ export const songsData: Song[] = [
     title: "Balance",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Melodía elegante y armoniosa para momentos íntimos y veladas especiales.",
+    description: "Bolero de Mario Molina Montes y Rafael de Paz con diálogo entre metales y teclado de madera, adecuado para la sobremesa o momentos de recepción.",
     src: "/Bailes/10. BALANCE.MP3",
   },
   {
@@ -48,7 +48,7 @@ export const songsData: Song[] = [
     title: "Capricho",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Sutil romanticismo y delicadeza interpretativa al estilo orquestal.",
+    description: "Bolero clásico de Claudio Estrada (popularizado en la versión de Ricardo Duardo) ejecutado en tempo reposado con melodía sobre el registro medio de la marimba y acompañamiento orquestal; ideal para la recepción o la comida.",
     src: "/Bailes/11. CAPRICHO.MP3",
   },
   {
@@ -56,7 +56,7 @@ export const songsData: Song[] = [
     title: "Camino Verde",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Obra emblemática de la época de oro llevada al corazón de la marimba.",
+    description: "Célebre bolero de Carmelo Larrea interpretado con cadencia romántica y trémolo en las teclas de madera, ideal para la recepción o la comida.",
     src: "/Bailes/12. CAMINO VERDE.MP3",
   },
   {
@@ -64,7 +64,7 @@ export const songsData: Song[] = [
     title: "Amor de la Calle",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Romanticismo tradicional interpretado con el auténtico sonido de Chiapas.",
+    description: "Bolero de Fernando Z. Maldonado adaptado a marimba y metales; su compás sereno y nostálgico resulta propicio para acompañar la comida.",
     src: "/Bailes/13. AMOR DE LA CALLE.MP3",
   },
   {
@@ -72,15 +72,15 @@ export const songsData: Song[] = [
     title: "Nochecita",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Suave, íntima y emotiva para acompañar una velada inolvidable.",
+    description: "Bolero tradicional de Víctor Huesca con armonización de trémolo suave en las baquetas, pensado para la recepción o veladas de sobremesa.",
     src: "/Bailes/14. NOCHESITA.MP3",
   },
   {
     id: "recuerdos-de-icaparai",
-    title: "Recuerdos de Icaparaí",
+    title: "Recuerdos de Ypacaraí",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Nostalgia y belleza melódica en cada nota del teclado de madera.",
+    description: "Obra de Demetrio Ortiz llevada al compás de bolero con marimba y metales; su cadencia romántica acompaña la recepción o la comida.",
     src: "/audios_drive/RECUERDOS DE ICAPARAI.MP3",
   },
   {
@@ -88,7 +88,7 @@ export const songsData: Song[] = [
     title: "Chacha Linda",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Dulzura y cadencia romántica perfecta para serenatas y reuniones.",
+    description: "Bolero de los Hermanos Martínez Gil ejecutado a marimba pura y base rítmica discreta; su cadencia romántica encaja en la recepción o la comida.",
     src: "/marimba chiapas exitos romanticos/Chacha linda.mp3",
   },
   {
@@ -96,7 +96,7 @@ export const songsData: Song[] = [
     title: "Mía No Más",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Arreglo entrañable con la sonoridad nostálgica de la marimba orquesta.",
+    description: "Bolero de Agustín Lara interpretado directamente en la madera con trémolos sostenidos y tempo reposado, ideal para el momento de la comida.",
     src: "/marimba chiapas exitos romanticos/Mia no maa.mp3",
   },
   {
@@ -104,7 +104,7 @@ export const songsData: Song[] = [
     title: "Nobleza",
     genre: "Boleros",
     genreLabel: "Bolero",
-    description: "Distinción, porte y sentimiento tradicional chiapaneco.",
+    description: "Bolero ranchero de Nicolás \"Nico\" Jiménez (popularizado por Javier Solís) interpretado con baqueteo dulce en el teclado de madera; su cadencia romántica es ideal para la recepción o la comida.",
     src: "/marimba chiapas exitos romanticos/Noblesa.mp3",
   },
 
@@ -116,7 +116,7 @@ export const songsData: Song[] = [
     title: "Azul Celeste",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Vals festivo y brillante con repiques alegres característicos.",
+    description: "Vals chiapaneco de Jorge E. Zúñiga Bermúdez en compás ternario de 3/4, ejecutado en marimba con floreos melódicos en el registro agudo.",
     src: "/marimba chiapas exitos romanticos/Azul celeste.mp3",
   },
   {
@@ -124,7 +124,7 @@ export const songsData: Song[] = [
     title: "Las Isabeles",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Vals clásico de gran gala, ideal para entradas solemnes y aniversarios.",
+    description: "Chotis de Luis Pérez Meza en compás binario pausado, interpretado con tarola marcada y melodía en la marimba al estilo tradicional de salón.",
     src: "/marimba chiapas exitos romanticos/Las  isabeles.mp3",
   },
   {
@@ -132,7 +132,7 @@ export const songsData: Song[] = [
     title: "Serenata Sin Luna",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Ranchera emotiva de honda tradición popular mexicana.",
+    description: "Obra de José Alfredo Jiménez ejecutada a marimba pura en tempo pausado; su cadencia romántica resulta propicia para la recepción o la comida.",
     src: "/marimba chiapas exitos romanticos/Serenta sin luna.mp3",
   },
   {
@@ -140,7 +140,7 @@ export const songsData: Song[] = [
     title: "Se Me Olvidó Otra Vez",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Éxito atemporal con el toque alegre y sentido de la marimba chiapaneca.",
+    description: "Canción ranchera de Juan Gabriel en compás binario de 2/4, con diálogo entre los metales de la orquesta y la línea melódica de la marimba.",
     src: "/audios_drive/SE ME OLVIDO OTRA VEZ.mp3",
   },
   {
@@ -148,7 +148,7 @@ export const songsData: Song[] = [
     title: "Albur de Amor",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Tradición ranchera con la fuerza de los metales y la marimba en vivo.",
+    description: "Vals ranchero de Alfonso Esparza Oteo en compás de 3/4, arreglado para marimba orquesta con contrapuntos de saxofones.",
     src: "/audios_drive/ALBUR DE AMOR.MP3",
   },
   {
@@ -156,7 +156,7 @@ export const songsData: Song[] = [
     title: "Rama Seca",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Clásico del cancionero popular mexicano que todos cantan.",
+    description: "Tema ranchero de Ramón Ortega y Pepe Albarrán en compás ternario de 3/4, interpretado con acento pausado por la marimba y la sección de alientos.",
     src: "/audios_drive/RAMA SECA.MP3",
   },
   {
@@ -164,7 +164,7 @@ export const songsData: Song[] = [
     title: "Desgraciado de Mí",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Sentimiento bravío y picardía tradicional ranchera.",
+    description: "Vals ranchero tradicional del repertorio vernáculo mexicano en compás de 3/4, ejecutado con fraseo expresivo en metales y marimba.",
     src: "/audios_drive/DESGRACIADO DE MI.MP3",
   },
   {
@@ -172,7 +172,7 @@ export const songsData: Song[] = [
     title: "Árbol Amigo",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Canción entrañable que despierta recuerdos y convivencia familiar.",
+    description: "Pieza en compás de vals ranchero (3/4) con atmósfera nostálgica y arreglo alternado entre las maderas y los alientos de la orquesta.",
     src: "/audios_drive/ARBOL AMIGO.MP3",
   },
   {
@@ -180,7 +180,7 @@ export const songsData: Song[] = [
     title: "Allá Nos Juntamos",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Ranchera alegre y festiva para cantar con amigos y familia.",
+    description: "Vals ranchero del cancionero popular mexicano en compás de 3/4, interpretado con paso firme en los bajos y arreglo orquestal tradicional.",
     src: "/audios_drive/ALLA NOS JUNTAMOS.MP3",
   },
   {
@@ -188,7 +188,7 @@ export const songsData: Song[] = [
     title: "Estrellita del Sur",
     genre: "Vals y rancheras",
     genreLabel: "Vals / Ranchera",
-    description: "Vals poético y cadencioso de profunda belleza sureña.",
+    description: "Vals criollo de Felipe Coronel Rueda en compás de 3/4, muy arraigado en la marimba chiapaneca con armonización paralela a tres baquetas.",
     src: "/marimba_chiapas_vol1/09 Estrellita del sur.mp3",
   },
   {
@@ -196,7 +196,7 @@ export const songsData: Song[] = [
     title: "Vals Ocozocoautla",
     genre: "Vals y rancheras",
     genreLabel: "Vals",
-    description: "Vals emblemático dedicado con orgullo a nuestra tierra, Ocozocoautla de Espinosa.",
+    description: "Vals tradicional dedicado a Ocozocoautla de Espinosa; pieza emblemática de la región zoque interpretada en 3/4 sobre las maderas.",
     src: "/Bailes/11 Vals Ocozocoautla.mp3",
   },
   {
@@ -204,7 +204,7 @@ export const songsData: Song[] = [
     title: "Paloma Querida",
     genre: "Vals y rancheras",
     genreLabel: "Ranchera",
-    description: "Ranchera romántica e inolvidable interpretada con la calidez de la marimba orquesta.",
+    description: "Clásica canción ranchera de José Alfredo Jiménez adaptada al repertorio de la marimba orquesta con arreglo animado y percusión.",
     src: "/Bailes/07 Paloma querida.mp3",
   },
   {
@@ -212,7 +212,7 @@ export const songsData: Song[] = [
     title: "Tú y las Nubes",
     genre: "Vals y rancheras",
     genreLabel: "Ranchera",
-    description: "Clásico ranchero lleno de sentimiento para cantar y disfrutar en familia.",
+    description: "Vals ranchero de José Alfredo Jiménez en compás de 3/4, ejecutado con el contraste característico entre marimba y sección de metales.",
     src: "/Bailes/09 Tu y las nubes.mp3",
   },
 
@@ -224,7 +224,7 @@ export const songsData: Song[] = [
     title: "Amores por Correo",
     genre: "Corridos",
     genreLabel: "Corrido / Paso Doble",
-    description: "Paso doble y corrido alegre con ritmo contagioso para bailar.",
+    description: "Tema ranchero de Héctor Danilo Díaz adaptado al formato instrumental de marimba con pulso binario marcado para baile de salón.",
     src: "/marimba_chiapas_vol1/06 Amores por correo.mp3",
   },
   {
@@ -232,7 +232,7 @@ export const songsData: Song[] = [
     title: "Palillos Chinos",
     genre: "Corridos",
     genreLabel: "Corrido / Paso Doble",
-    description: "Virtuosismo y destreza en los teclados de la marimba orquesta.",
+    description: "Pieza instrumental de tempo vivo ejecutada con precisión en las baquetas sobre la marimba, alternando pasajes picados y ligados.",
     src: "/marimba_chiapas_vol1/07 Palillos chinos.mp3",
   },
   {
@@ -240,7 +240,7 @@ export const songsData: Song[] = [
     title: "Las Pitayitas",
     genre: "Corridos",
     genreLabel: "Corrido / Paso Doble",
-    description: "Pieza tradicional de gran dinamismo y cadencia popular.",
+    description: "Melodía instrumental del repertorio tradicional regional en compás binario ágil, con acompañamiento de bajo y percusión ligera.",
     src: "/marimba_chiapas_vol1/10 Las piallitas.mp3",
   },
   {
@@ -248,7 +248,7 @@ export const songsData: Song[] = [
     title: "La Danza de la Muñeca",
     genre: "Corridos",
     genreLabel: "Corrido / Foxtrot",
-    description: "Alegría clásica con toques de foxtrot que anima a chicos y grandes.",
+    description: "Pieza clásica de aire foxtrot y polka ligera muy frecuente en el repertorio tradicional de marimba, ejecutada con trémolo claro en el tiple.",
     src: "/marimba_chiapas_vol1/01 Danza de la muñeca.mp3",
   },
   {
@@ -256,7 +256,7 @@ export const songsData: Song[] = [
     title: "La Viuda Alegre",
     genre: "Corridos",
     genreLabel: "Paso Doble / Foxtrot",
-    description: "Gran paso doble orquestal lleno de fiesta y elegancia.",
+    description: "Adaptación rítmica en compás de 2/4 del célebre tema de Franz Lehár, trasladada al lenguaje de la marimba de concierto y baile tradicional.",
     src: "/marimba_chiapas_vol1/02 La Viuda alegre.mp3",
   },
   {
@@ -264,7 +264,7 @@ export const songsData: Song[] = [
     title: "Flor de Amor",
     genre: "Corridos",
     genreLabel: "Corrido / Tradicional",
-    description: "Corrido tradicional de sentimiento profundo y cadencia firme.",
+    description: "Pieza tradicional de compás binario alegre con fraseo picado en el registro agudo de la marimba.",
     src: "/marimba_chiapas_vol1/04 Flor de amor.mp3",
   },
   {
@@ -272,7 +272,7 @@ export const songsData: Song[] = [
     title: "Veinticinco Rosas",
     genre: "Corridos",
     genreLabel: "Corrido / Ranchero",
-    description: "Corrido ranchero icónico para brindar y celebrar en grande.",
+    description: "Tema de Joan Sebastian adaptado al teclado de la marimba con compás ranchero y fraseo melódico definido.",
     src: "/marimba_chiapas_vol1/05 25 rosas.mp3",
   },
   {
@@ -280,7 +280,7 @@ export const songsData: Song[] = [
     title: "Popurrí Ranchero",
     genre: "Corridos",
     genreLabel: "Corrido / Ranchero",
-    description: "Secuencia de temas tradicionales que levantan el ánimo de la fiesta.",
+    description: "Encadenamiento instrumental de sones y temas rancheros en tiempo vivo de 2/4 con metales, batería y teclado de madera.",
     src: "/Bailes/08 Popurri ranchero.mp3",
   },
   {
@@ -288,7 +288,7 @@ export const songsData: Song[] = [
     title: "Corrido de los Pérez",
     genre: "Corridos",
     genreLabel: "Corrido",
-    description: "Historia y folclor mexicano con el timbre brillante de la marimba.",
+    description: "Corrido narrativo tradicional mexicano en compás binario de 2/4, con respuestas melódicas entre saxofones y marimba.",
     src: "/audios_drive/CORRIDO DE LOS PEREZ.mp3",
   },
   {
@@ -296,7 +296,7 @@ export const songsData: Song[] = [
     title: "El Albañil",
     genre: "Corridos",
     genreLabel: "Corrido",
-    description: "Canción popular llena de energía y buen humor colectivo.",
+    description: "Tema popular de Florencio Meneses adaptado al estilo de marimba orquesta en pulso rápido de 2/4 con acentos marcados en los saxofones.",
     src: "/audios_drive/EL ALBANIL.mp3",
   },
   {
@@ -304,7 +304,7 @@ export const songsData: Song[] = [
     title: "La Puerta Negra",
     genre: "Corridos",
     genreLabel: "Corrido Norteño",
-    description: "Corrido clásico e infaltable que pone a cantar a toda la audiencia.",
+    description: "Clásico norteño de Ramón Gutiérrez Torres arreglado en compás de 2/4 para marimba orquesta, con redobles de tarola y metales al frente.",
     src: "/audios_drive/LA PUERTA NEGRA.mp3",
   },
   {
@@ -312,7 +312,7 @@ export const songsData: Song[] = [
     title: "Llegó Borracho el Borracho",
     genre: "Corridos",
     genreLabel: "Corrido / Ranchero",
-    description: "Tradición festiva y picardía mexicana para momentos divertidos.",
+    description: "Tema picaresco del repertorio popular mexicano en compás vivo de polka norteña adaptado a la sección de vientos y marimba.",
     src: "/audios_drive/LLEGO BORRACHO EL BORRACHO.mp3",
   },
   {
@@ -320,7 +320,7 @@ export const songsData: Song[] = [
     title: "No Me Caso Compadre",
     genre: "Corridos",
     genreLabel: "Corrido Alegre",
-    description: "Ritmo movido y cómico para amenizar reuniones y banquetes.",
+    description: "Corrido humorístico en compás binario ágil con intervenciones alternadas entre la sección de alientos y la marimba.",
     src: "/audios_drive/NO ME CASO COMPADRE.mp3",
   },
   {
@@ -328,7 +328,7 @@ export const songsData: Song[] = [
     title: "Poquita Fe",
     genre: "Corridos",
     genreLabel: "Corrido / Tradicional",
-    description: "Melodía clásica que fusiona nostalgia y cadencia rítmica.",
+    description: "Canción de Enrique Galán Anica (popularizada por el Dueto Bertín y Lalo) ejecutada en pulso binario de 2/4 con marimba y sección de saxofones.",
     src: "/audios_drive/POQUITA FE.mp3",
   },
   {
@@ -336,7 +336,7 @@ export const songsData: Song[] = [
     title: "Chata Malora",
     genre: "Corridos",
     genreLabel: "Corrido Alegre",
-    description: "Corrido rápido y pícaro para encender el ambiente.",
+    description: "Pieza del folclor mexicano interpretada en compás binario ágil a marimba sola con acompañamiento rítmico de contrabajo y percusión.",
     src: "/marimba chiapas exitos romanticos/Chata malora.mp3",
   },
   {
@@ -344,7 +344,7 @@ export const songsData: Song[] = [
     title: "La Basurita",
     genre: "Corridos",
     genreLabel: "Corrido / Ranchero",
-    description: "Ranchera tradicional interpretada con fuerza orquestal.",
+    description: "Composición de Juan Záizar ejecutada en tempo ligero de 2/4 en marimba tradicional con remates claros en los bajos de madera.",
     src: "/marimba chiapas exitos romanticos/La basurita.mp3",
   },
   {
@@ -352,7 +352,7 @@ export const songsData: Song[] = [
     title: "Valencia",
     genre: "Corridos",
     genreLabel: "Paso Doble",
-    description: "Famoso paso doble taurino con brillantez instrumental.",
+    description: "Famoso pasodoble español de José Padilla interpretado en compás de marcha festiva (2/4) con armonización en bloque sobre la marimba.",
     src: "/marimba chiapas exitos romanticos/Valencia.mp3",
   },
 
@@ -364,7 +364,7 @@ export const songsData: Song[] = [
     title: "Baila Mi Rumba",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia / Rumba",
-    description: "Sabor tropical y percusiones vivas que llenan la pista de baile.",
+    description: "Pieza bailable de corte tropical con güiro continuo, metales y síncopas rítmicas en el teclado de madera.",
     src: "/audios_drive/BAILA MI RUMBA.mp3",
   },
   {
@@ -372,7 +372,7 @@ export const songsData: Song[] = [
     title: "Cuando Llegaste Tú",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia / Bailable",
-    description: "Cumbia bailable contagiosa para disfrutar en pareja o en grupo.",
+    description: "Cumbia romántica de tempo moderado con melodía conducida por la marimba sobre una base bailable de percusión tropical.",
     src: "/Bailes/CUANDO LLEGASTE TU.mp3",
   },
   {
@@ -380,7 +380,7 @@ export const songsData: Song[] = [
     title: "El Merembenbén",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia / Mambo",
-    description: "Fusión tropical chispeante que contagia entusiasmo de inmediato.",
+    description: "Cumbia de corte caribeño con juego rítmico de percusión, vientos y melodía sincopada en la marimba.",
     src: "/audios_drive/EL MEREMBENBEN.mp3",
   },
   {
@@ -388,7 +388,7 @@ export const songsData: Song[] = [
     title: "La Loción",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia / Bailable",
-    description: "Cumbia alegre con el toque guapachoso característico de las fiestas.",
+    description: "Cumbia chiapaneca de José Manuel Solís Samayoa (popularizada por Los Ángeles de Fuego), marcada por el güiro constante y el fraseo picado de la marimba.",
     src: "/Bailes/LA LOCION.mp3",
   },
   {
@@ -396,7 +396,7 @@ export const songsData: Song[] = [
     title: "Los Plataneros",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia Tropical",
-    description: "Ritmo caribeño y sureño con marimba y vientos en perfecta armonía.",
+    description: "Cumbia tradicional con sabor tropical y diálogo constante entre la sección de alientos y los registros medios de la marimba.",
     src: "/audios_drive/LOS PLATANEROS.mp3",
   },
   {
@@ -404,7 +404,7 @@ export const songsData: Song[] = [
     title: "Tu Presa Fácil",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia Tropical",
-    description: "Cumbia tropical romántica y bailable que no pasa de moda.",
+    description: "Cumbia bailable de arreglo claro en marimba y metales, adecuada para abrir la pista de baile en celebraciones familiares.",
     src: "/audios_drive/TU PRESA FACIL.mp3",
   },
   {
@@ -412,7 +412,7 @@ export const songsData: Song[] = [
     title: "El Valle de la Ermita",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia Bailable",
-    description: "Cumbia tradicional y festiva chiapaneca para animar la pista de baile.",
+    description: "Reconocida cumbia compuesta por José Gerardo \"Lalo\" Tzul Lacán, ejecutada con la cadencia característica de la marimba orquesta.",
     src: "/Bailes/04 El valle de la hermita.mp3",
   },
   {
@@ -420,7 +420,7 @@ export const songsData: Song[] = [
     title: "La Limosna",
     genre: "Cumbias y mambos",
     genreLabel: "Danzón / Chachachá",
-    description: "Elegante cadencia bailable al compás de danzón y chachachá interpretada con marimba orquesta.",
+    description: "Tema de Indalecio Ramírez interpretado con la elegancia y el compás pausado del danzón, abriendo paso en su parte final al chachachá sobre la madera.",
     src: "/marimba chiapas exitos romanticos/La limosna.mp3",
   },
   {
@@ -428,7 +428,7 @@ export const songsData: Song[] = [
     title: "Popurrí de Mambos",
     genre: "Cumbias y mambos",
     genreLabel: "Mambo / Alegre",
-    description: "Derroche de energía y metales con los mejores mambos de salón.",
+    description: "Selección de mambos de salón en los que destaca el empuje rítmico de saxofones, sección de alientos, cencerro y marimba.",
     src: "/Bailes/11 Popurri de mambos.mp3",
   },
   {
@@ -436,7 +436,7 @@ export const songsData: Song[] = [
     title: "¿Quién Será?",
     genre: "Cumbias y mambos",
     genreLabel: "Mambo / Chachachá",
-    description: "Clásico mambo-chachachá de fama mundial con virtuosismo chiapaneco.",
+    description: "Mambo-chachachá compuesto por Pablo Beltrán Ruiz, ejecutado en formato de marimba orquesta con síncopas marcadas en metales y percusión.",
     src: "/Bailes/01 Quien sera.mp3",
   },
   {
@@ -444,7 +444,7 @@ export const songsData: Song[] = [
     title: "Amor Chiquito",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia / Bailable",
-    description: "Cumbia sabrosa y ligera para animar cualquier festejo familiar.",
+    description: "Cumbia bailable de pulso constante con línea melódica en la marimba y acompañamiento de alientos y güiro.",
     src: "/Bailes/01 Amor chiquio.mp3",
   },
   {
@@ -452,7 +452,7 @@ export const songsData: Song[] = [
     title: "Mi Cafetal",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia Colombiana",
-    description: "Cumbia de origen colombiano adaptada magistralmente a la marimba.",
+    description: "Clásica cumbia del compositor colombiano Crescencio Salcedo adaptada al timbre cálido de la marimba y la sección de vientos chiapaneca.",
     src: "/Bailes/06 Mi cafetal.mp3",
   },
   {
@@ -460,7 +460,7 @@ export const songsData: Song[] = [
     title: "Cenizas",
     genre: "Cumbias y mambos",
     genreLabel: "Bailable / Danzón",
-    description: "Elegancia bailable con aire de danzón nostálgico.",
+    description: "Obra de Manuel \"Wello\" Rivas llevada al repertorio bailable de la marimba orquesta con sección de alientos y percusión.",
     src: "/Bailes/07 Cenizas.mp3",
   },
   {
@@ -468,7 +468,7 @@ export const songsData: Song[] = [
     title: "Nunca en Domingo",
     genre: "Cumbias y mambos",
     genreLabel: "Bailable / Fox",
-    description: "Clásico internacional llevado al compás rítmico bailable.",
+    description: "Tema clásico de Manos Hadjidakis adaptado al repertorio bailable de la marimba orquesta con percusión y sección de alientos.",
     src: "/Bailes/02 Nunca en Domingo.mp3",
   },
   {
@@ -476,7 +476,7 @@ export const songsData: Song[] = [
     title: "Mi Pobre Corazón",
     genre: "Cumbias y mambos",
     genreLabel: "Cumbia",
-    description: "Cumbia alegre y guapachosa que invita a bailar desde el primer compás.",
+    description: "Cumbia tropical de tempo bailable con fraseo alternado entre los metales y el registro agudo de la marimba.",
     src: "/Bailes/03 Hay mi pobre corazon.mp3",
   },
 
@@ -488,7 +488,7 @@ export const songsData: Song[] = [
     title: "Popurrí Fiesta Coiteca",
     genre: "Zapateados",
     genreLabel: "Zapateado Carnavalero",
-    description: "Joya del Carnaval Zoque de Ocozocoautla: La Jota, La Llorona, San Bernabé, El Palomo, El Pire y El Torito.",
+    description: "Selección representativa del Carnaval Zoque de Ocozocoautla que enlaza La Jota, La Llorona, San Bernabé, El Palomo, El Pire y El Torito con ágil juego de baquetas.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/utomp3.com - Popurri Fiesta Coiteca la jota la llorona san bernabe el palomo el pire el torito_320kbps.mp3",
   },
   {
@@ -496,7 +496,7 @@ export const songsData: Song[] = [
     title: "Cohuina",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Son ceremonial y tradicional que honra la fiesta patronal de Coita.",
+    description: "Son ceremonial ligado a las cohuinás y ermitas tradicionales de Coita, ejecutado en compás de 6/8 con repique continuo de baquetas.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/Cohuina.mp3",
   },
   {
@@ -504,7 +504,7 @@ export const songsData: Song[] = [
     title: "El Paraje",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Zapateado autóctono con el brío de las comunidades zoques.",
+    description: "Zapateado chiapaneco de raíz zoque que exige velocidad y precisión en las baquetas para sostener la cadencia festiva tradicional.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/El Paraje.mp3",
   },
   {
@@ -512,7 +512,7 @@ export const songsData: Song[] = [
     title: "Popurrí Zoque",
     genre: "Zapateados",
     genreLabel: "Zapateado Zoque",
-    description: "Conjunto de sones y zapateados representativos de la raíz coiteca.",
+    description: "Sucesión de sones y zapateados autóctonos de la tradición coiteca, interpretados con agilidad en las baquetas y acentuación regional.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/Popurri Zoque.mp3",
   },
   {
@@ -520,7 +520,7 @@ export const songsData: Song[] = [
     title: "Ponzoqui",
     genre: "Zapateados",
     genreLabel: "Zapateado Zoque",
-    description: "Ritmo tradicional y alegre propio de las festividades de Chiapas.",
+    description: "Son zoque en compás de 6/8 ligado a las comparsas festivas de Chiapas, sostenido por el baqueteo ágil sobre los teclados de hormiguillo.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/Ponzoqui.mp3",
   },
   {
@@ -528,7 +528,7 @@ export const songsData: Song[] = [
     title: "Jabalí (Javalina)",
     genre: "Zapateados",
     genreLabel: "Zapateado Zoque",
-    description: "Baile tradicional de los personajes carnavalescos de Ocozocoautla.",
+    description: "Baile tradicional de los personajes del Carnaval Zoque de Ocozocoautla, ejecutado con ritmo vigoroso y agilidad en las baquetas.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/Javalina.mp3",
   },
   {
@@ -536,7 +536,7 @@ export const songsData: Song[] = [
     title: "La Coitequita",
     genre: "Zapateados",
     genreLabel: "Zapateado Coiteco",
-    description: "Orgullo de Ocozocoautla de Espinosa; zapateado vivo y apasionado.",
+    description: "Zapateado emblemático de Ocozocoautla de Espinosa; su compás festivo de 6/8 destaca el repique ágil y parejo en las baquetas.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/La Coitequita.mp3",
   },
   {
@@ -544,7 +544,7 @@ export const songsData: Song[] = [
     title: "El Copotí",
     genre: "Zapateados",
     genreLabel: "Zapateado Zoque",
-    description: "Zapateado zoque lleno de colorido, ritmo veloz y tradición.",
+    description: "Zapateado zoque tradicional de tempo veloz donde la destreza de las baquetas marca cada vuelta del baile regional.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/El Copoti.mp3",
   },
   {
@@ -552,7 +552,7 @@ export const songsData: Song[] = [
     title: "Las Correlonas",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Velocidad y destreza marimbística para el zapateo festivo.",
+    description: "Son chiapaneco de ejecución rápida que exige notable agilidad en las baquetas y firmeza rítmica en el acompañamiento.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/Las Correlonas.mp3",
   },
   {
@@ -560,7 +560,7 @@ export const songsData: Song[] = [
     title: "Zandunguita",
     genre: "Zapateados",
     genreLabel: "Son / Zapateado",
-    description: "Son tradicional chiapaneco que enaltece el alma del sureste.",
+    description: "Son tradicional del sureste en compás de 6/8 con sabor festivo chiapaneco y repiques agudos ejecutados en las baquetas.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/Zandunguita.mp3",
   },
   {
@@ -568,7 +568,7 @@ export const songsData: Song[] = [
     title: "El Levanta Vieja",
     genre: "Zapateados",
     genreLabel: "Zapateado Alegre",
-    description: "Zapateado jocoso y veloz que pone de pie a todo el público.",
+    description: "Zapateado jocoso tradicional del repertorio coiteco que combina humor popular, ritmo ágil en las baquetas y tradición festiva chiapaneca.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/El Levanta Vieja.mp3",
   },
   {
@@ -576,7 +576,7 @@ export const songsData: Song[] = [
     title: "Carnaval Coiteco",
     genre: "Zapateados",
     genreLabel: "Zapateado Carnavalero",
-    description: "Pieza cumbre que refleja la algarabía de la máxima fiesta de Coita.",
+    description: "Repertorio carnavalesco de Ocozocoautla que reúne sones zoques tradicionales marcados por la agilidad en las baquetas y la percusión festiva.",
     src: "/Bailes/10 Carnaval coiteco.mp3",
   },
   {
@@ -584,7 +584,7 @@ export const songsData: Song[] = [
     title: "Mi Pueblito",
     genre: "Zapateados",
     genreLabel: "Zapateado Chiapaneco",
-    description: "Evocación nostálgica y festiva de los pueblos chiapanecos.",
+    description: "Zapateado chiapaneco en compás de 6/8 que alterna secciones melódicas tradicionales con pasajes rápidos en las baquetas.",
     src: "/marimba_chiapas_vol1/11 Mi pueblito.mp3",
   },
   {
@@ -592,7 +592,7 @@ export const songsData: Song[] = [
     title: "Flor de Niluyarilo",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Zapateado folclórico clásico con el repique dulce de la marimba.",
+    description: "Son tradicional chiapaneco de raíz folclórica en 6/8 donde el teclado de madera marca el pulso festivo con agilidad en las baquetas.",
     src: "/marimba_chiapas_vol1/03 Flor de Niyularilo.mp3",
   },
   {
@@ -600,7 +600,7 @@ export const songsData: Song[] = [
     title: "El Pijuy",
     genre: "Zapateados",
     genreLabel: "Zapateado Chiapaneco",
-    description: "Son emblemático chiapaneco, chispeante y lleno de tradición.",
+    description: "Son tradicional del repertorio de marimba chiapaneca con motivos rítmicos vivos en el tiple y agilidad en las baquetas.",
     src: "/marimba_chiapas_vol1/08 El pijuy.mp3",
   },
   {
@@ -608,7 +608,7 @@ export const songsData: Song[] = [
     title: "Popurrí Fiesta Zoque",
     genre: "Zapateados",
     genreLabel: "Zapateado Zoque (8 min)",
-    description: "Gran ensamble completo de sones y zapateados tradicionales del Carnaval de Ocozocoautla.",
+    description: "Recorrido extenso de sones y zapateados del Carnaval Zoque de Ocozocoautla, sostenido por el baqueteo continuo y la tradición festiva chiapaneca.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/Popurri Fiesta Zoque.mp3",
   },
   {
@@ -616,7 +616,7 @@ export const songsData: Song[] = [
     title: "El Cachito (Individual)",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Versión individual del son tradicional chiapaneco El Cachito.",
+    description: "Versión individual del son chiapaneco El Cachito en compás de 6/8, con pasajes rápidos de baquetas en el registro agudo.",
     src: "/Bailes/04 Pista 4.mp3",
   },
   {
@@ -624,7 +624,7 @@ export const songsData: Song[] = [
     title: "Metepec",
     genre: "Zapateados",
     genreLabel: "Zapateado Alegre",
-    description: "Son alegre y dinámico con la sonoridad típica de la marimba chiapaneca.",
+    description: "Chilena tradicional de carácter festivo y aire cercano al zapateado, ejecutada con agilidad en las baquetas sobre la marimba y sección de saxofones.",
     src: "/Bailes/05 Metepec.mp3",
   },
   {
@@ -632,7 +632,7 @@ export const songsData: Song[] = [
     title: "Cortando Café",
     genre: "Zapateados",
     genreLabel: "Zapateado Chiapaneco",
-    description: "Estampa musical chiapaneca que rinde homenaje al campo y sus tradiciones.",
+    description: "Zapateado folclórico chiapaneco de la autoría del Mtro. Rogelio Gómez, evocador de las fincas cafetaleras y ejecutado con agilidad en las baquetas dentro de la tradición festiva de Chiapas.",
     src: "/audios_drive/CORTANDO CAFE.MP3",
   },
   {
@@ -640,7 +640,7 @@ export const songsData: Song[] = [
     title: "El Alfarero",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Homenaje a los artesanos chiapanecos en compás de zapateado.",
+    description: "Zapateado tradicional chiapaneco en homenaje a los artesanos, interpretado con pulso festivo y agilidad en las baquetas sobre la marimba.",
     src: "/audios_drive/EL ALFARERA.MP3",
   },
   {
@@ -648,7 +648,7 @@ export const songsData: Song[] = [
     title: "Popurrí de Zapateados",
     genre: "Zapateados",
     genreLabel: "Zapateado Zoque",
-    description: "Ráfaga de zapateados tradicionales para lucirse en la pista de baile.",
+    description: "Secuencia continua de zapateados regionales que exige agilidad constante en las baquetas dentro de la tradición festiva chiapaneca.",
     src: "/audios_drive/POPURRI DE ZAPATEADOS.MP3",
   },
   {
@@ -656,7 +656,7 @@ export const songsData: Song[] = [
     title: "El Cachito y Tortuga del Arenal",
     genre: "Zapateados",
     genreLabel: "Zapateado Costeño",
-    description: "Son costeño y chiapaneco que une alegría, marimba y folclor.",
+    description: "Dos sones tradicionales del sureste en compás de 6/8 enlazados en marimba pura, resaltando el brío y la agilidad en las baquetas.",
     src: "/marimba chiapas exitos romanticos/El cachito y tortuga del arenal.mp3",
   },
   {
@@ -664,7 +664,7 @@ export const songsData: Song[] = [
     title: "Quiéreme",
     genre: "Zapateados",
     genreLabel: "Zapateado Sincopado / Huapango",
-    description: "Sincopado alegre con compás de huapango tradicional interpretado en marimba.",
+    description: "Zapateado chiapaneco de compás sincopado en 6/8 ejecutado en marimba tradicional, con acentos festivos y agilidad en las baquetas.",
     src: "/marimba chiapas exitos romanticos/Quiereme.mp3",
   },
   {
@@ -672,7 +672,7 @@ export const songsData: Song[] = [
     title: "Tu Enamorado",
     genre: "Zapateados",
     genreLabel: "Zapateado Sincopado / Huapango",
-    description: "Zapateado sincopado de gran colorido y ritmo folclórico chiapaneco.",
+    description: "Zapateado tradicional en 6/8 dentro del repertorio festivo chiapaneco, con réplicas rápidas de baquetas sobre el registro alto.",
     src: "/marimba chiapas exitos romanticos/Tu enamorado.mp3",
   },
   {
@@ -680,7 +680,7 @@ export const songsData: Song[] = [
     title: "Cerro de San Bartolo",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Zapateado tradicional chiapaneco lleno de vigor y raíces regionales.",
+    description: "Son chiapaneco en compás de 6/8 muy presente en festividades tradicionales de Venustiano Carranza y la región centro, con agilidad en las baquetas.",
     src: "/marimba_chiapas_8_zapateaditos/01 Cerro de San Bartolo.mp3",
   },
   {
@@ -688,7 +688,7 @@ export const songsData: Song[] = [
     title: "El Caballito",
     genre: "Zapateados",
     genreLabel: "Zapateado Alegre",
-    description: "Ritmo ágil y festivo en las maderas que anima el zapateo en cada celebración.",
+    description: "Zapateado clásico del repertorio chiapaneco que resalta por la ligereza y agilidad en las baquetas imitando el trote en el teclado.",
     src: "/marimba_chiapas_8_zapateaditos/03 El Caballito.mp3",
   },
   {
@@ -696,7 +696,7 @@ export const songsData: Song[] = [
     title: "El Campesino",
     genre: "Zapateados",
     genreLabel: "Zapateado Chiapaneco",
-    description: "Son tradicional que celebra la alegría y el espíritu de la tierra chiapaneca.",
+    description: "Son festivo en compás de 6/8 ligado a la música popular del campo chiapaneco, con marcado contratiempo y agilidad en las baquetas.",
     src: "/marimba_chiapas_8_zapateaditos/04 El Campesino.mp3",
   },
   {
@@ -704,7 +704,7 @@ export const songsData: Song[] = [
     title: "La Marucha",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Pieza pícara y cadenciosa del repertorio clásico de marimba.",
+    description: "Pieza pícara del repertorio clásico de zapateados chiapanecos en compás de 6/8, ejecutada con agilidad en las baquetas.",
     src: "/marimba_chiapas_8_zapateaditos/06 La Marucha.mp3",
   },
   {
@@ -712,7 +712,7 @@ export const songsData: Song[] = [
     title: "Popurrí Zoque Coiteco (La Cotorra y El Caballo)",
     genre: "Zapateados",
     genreLabel: "Zapateado Zoque",
-    description: "Popurrí tradicional coiteco que reúne la alegría de La Cotorra y El Caballo.",
+    description: "Enlace de dos sones tradicionales de Ocozocoautla —La Cotorra y El Caballo— con notable agilidad en las baquetas y carácter festivo chiapaneco.",
     src: "/marimba_chiapas_8_zapateaditos/07 Popurri Zoque Coiteco.mp3",
   },
   {
@@ -720,7 +720,7 @@ export const songsData: Song[] = [
     title: "San Bernabé",
     genre: "Zapateados",
     genreLabel: "Zapateado Carnavalero",
-    description: "Son emblemático de las festividades y el carnaval tradicional zoque de Coita.",
+    description: "Son tradicional del Carnaval Zoque de Ocozocoautla dedicado al santo patrono, con agilidad en las baquetas y pulso festivo chiapaneco.",
     src: "/marimba_chiapas_8_zapateaditos/08 San Bernabe.mp3",
   },
 ];

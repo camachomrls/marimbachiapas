@@ -440,14 +440,15 @@ select:focus-visible {
 .contact-panel-action > div {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .contact-panel-action .whatsapp-button,
-.contact-panel-action .facebook-btn {
+.contact-panel-action .facebook-btn,
+.contact-panel-action .tiktok-btn {
   min-height: 3rem;
   display: inline-flex;
   flex-direction: row;
@@ -466,14 +467,16 @@ select:focus-visible {
 }
 
 .contact-panel-action .whatsapp-button .icon,
-.contact-panel-action .facebook-btn .icon {
+.contact-panel-action .facebook-btn .icon,
+.contact-panel-action .tiktok-btn .icon {
   width: 1.15rem;
   height: 1.15rem;
   margin-bottom: 0;
 }
 
 .contact-panel-action .whatsapp-button span,
-.contact-panel-action .facebook-btn span {
+.contact-panel-action .facebook-btn span,
+.contact-panel-action .tiktok-btn span {
   font-size: inherit;
   font-weight: inherit;
   letter-spacing: normal;
@@ -1360,7 +1363,8 @@ select:focus-visible {
   }
 
   .contact-panel-action .whatsapp-button,
-  .contact-panel-action .facebook-btn {
+  .contact-panel-action .facebook-btn,
+  .contact-panel-action .tiktok-btn {
     min-width: 14rem;
     min-height: 3.2rem;
     padding-inline: 1.4rem;
@@ -1427,7 +1431,8 @@ select:focus-visible {
 
   .whatsapp-button,
   .cream-button,
-  .facebook-btn {
+  .facebook-btn,
+  .tiktok-btn {
     min-height: 3.2rem;
     font-size: 0.96rem;
     font-weight: 700;
@@ -2186,6 +2191,30 @@ select:focus-visible {
   box-shadow: 0 6px 14px rgba(24, 119, 242, 0.35);
 }
 
+/* Botón TikTok y Enlace */
+.tiktok-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: #16100e;
+  color: #fff6e8;
+  border: 1px solid rgba(254, 44, 85, 0.45);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  box-shadow: 0 4px 10px rgba(22, 16, 14, 0.25);
+}
+
+.tiktok-btn:hover {
+  transform: translateY(-2px);
+  background: #241915;
+  box-shadow: 0 6px 14px rgba(254, 44, 85, 0.28);
+}
+
 /* Media Queries para Videos y Presentación */
 @media (max-width: 900px) {
   .videos-grid {
@@ -2232,39 +2261,40 @@ select:focus-visible {
    Mini-Formulario de Cotización Directa a WhatsApp (QuoteForm)
    ========================================================================== */
 .quote-form-section {
-  padding: 1rem 0 4.5rem;
+  padding: 1.25rem 0 4.5rem;
 }
 
+.quote-form-container,
 .quote-form-card {
-  padding: 2.2rem 2.4rem;
-  border: 2px solid #e0caa5;
-  border-radius: var(--organic-radius);
+  padding: 2.75rem 3rem;
+  border: 1px solid rgba(193, 151, 99, 0.38);
+  border-radius: 16px;
   background:
-    radial-gradient(circle at 95% 10%, rgba(193, 151, 99, 0.16), transparent 45%),
-    #fffaf1;
-  box-shadow:
-    0 8px 24px rgba(70, 40, 24, 0.09),
-    inset 0 0 0 1px rgba(193, 151, 99, 0.25);
+    radial-gradient(circle at 96% 8%, rgba(193, 151, 99, 0.14), transparent 45%),
+    #fffcf7;
+  box-shadow: 0 10px 30px rgba(59, 40, 24, 0.08);
 }
 
+.quote-form-container.is-embedded,
 .quote-form-card.is-embedded {
   margin-top: 1.8rem;
-  padding: 1.65rem 1.75rem;
+  padding: 2.1rem 2.25rem;
   text-align: left;
-  border-color: #c19763;
-  background: #fffcf6;
-  box-shadow: 0 6px 18px rgba(70, 40, 24, 0.07);
+  border-color: rgba(193, 151, 99, 0.45);
+  background: #fffcf7;
+  box-shadow: 0 10px 30px rgba(59, 40, 24, 0.08);
 }
 
 .quote-form-header {
   max-width: 44rem;
-  margin: 0 auto 1.6rem;
+  margin: 0 auto 2rem;
   text-align: center;
 }
 
+.quote-form-container.is-embedded .quote-form-header,
 .quote-form-card.is-embedded .quote-form-header {
   margin-inline: 0;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   text-align: left;
 }
 
@@ -2287,107 +2317,121 @@ select:focus-visible {
 .quote-form-body {
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.75rem;
 }
 
 .quote-form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem 1.25rem;
+  gap: 1.25rem 1.4rem;
 }
 
 .quote-form-field {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.45rem;
 }
 
 .quote-form-field label {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: #5c3a28;
+  color: #8a6f5e;
 }
 
 .quote-form-field input,
 .quote-form-field select {
   width: 100%;
-  min-height: 2.95rem;
-  padding: 0.65rem 0.9rem;
-  border: 1.5px solid #c19763;
-  border-radius: 0.85rem;
-  background: #fffdf8;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 14px 16px;
+  border: 1.5px solid #e0caa5;
+  border-radius: 8px;
+  background-color: #ffffff;
   color: var(--brown);
-  font-size: 0.95rem;
+  font-size: 0.96rem;
   font-weight: 500;
+  line-height: 1.4;
   transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    background 160ms ease;
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.quote-form-field select {
+  padding-right: 2.6rem;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238a6f5e' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 1rem 1rem;
 }
 
 .quote-form-field input::placeholder {
-  color: #9b8270;
+  color: #a18876;
 }
 
 .quote-form-field input:hover,
 .quote-form-field select:hover {
-  border-color: #9d7a50;
+  border-color: #c19763;
 }
 
 .quote-form-field input:focus,
-.quote-form-field select:focus {
+.quote-form-field input:focus-visible,
+.quote-form-field select:focus,
+.quote-form-field select:focus-visible {
   outline: none;
-  border-color: #4e2d22;
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(224, 202, 165, 0.55);
+  outline-offset: 0;
+  border-color: #C19763;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(193, 151, 99, 0.22);
 }
 
 .quote-form-actions {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.65rem;
-  padding-top: 0.25rem;
+  gap: 0.75rem;
+  padding-top: 0.35rem;
 }
 
+.quote-form-container.is-embedded .quote-form-actions,
 .quote-form-card.is-embedded .quote-form-actions {
   align-items: stretch;
 }
 
+.btn-whatsapp,
 .quote-submit-btn {
-  min-height: 3.25rem;
+  min-height: 3.35rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.8rem 1.85rem;
+  gap: 0.65rem;
+  padding: 15px 32px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 50px;
   color: #ffffff;
-  background: #2e7d32;
+  background: #25D366;
   font-size: 0.98rem;
   font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
-  box-shadow:
-    0 4px 10px rgba(46, 125, 50, 0.28),
-    0 8px 18px rgba(46, 125, 50, 0.14);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.32);
   transition:
-    transform 160ms ease,
-    background 160ms ease,
-    box-shadow 160ms ease;
+    transform 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
+.btn-whatsapp:hover,
 .quote-submit-btn:hover {
-  background: #1b5e20;
+  background: #1ebe5d;
   transform: translateY(-2px);
-  box-shadow:
-    0 6px 14px rgba(27, 94, 32, 0.34),
-    0 10px 22px rgba(27, 94, 32, 0.18);
+  box-shadow: 0 12px 26px rgba(37, 211, 102, 0.44);
 }
 
+.btn-whatsapp:active,
 .quote-submit-btn:active {
   transform: translateY(0) scale(0.99);
 }
@@ -2399,16 +2443,19 @@ select:focus-visible {
 }
 
 @media (max-width: 640px) {
+  .quote-form-container,
   .quote-form-card,
+  .quote-form-container.is-embedded,
   .quote-form-card.is-embedded {
-    padding: 1.45rem 1.15rem;
+    padding: 1.75rem 1.35rem;
   }
 
   .quote-form-grid {
     grid-template-columns: 1fr;
-    gap: 0.9rem;
+    gap: 1rem;
   }
 
+  .btn-whatsapp,
   .quote-submit-btn {
     width: 100%;
   }

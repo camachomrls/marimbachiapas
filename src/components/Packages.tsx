@@ -9,14 +9,14 @@ const PACKAGE_CARDS = [
   {
     id: "grupo-completo",
     badge: "Máximo Impacto Orquestal",
-    title: "Grupo Completo (10 músicos)",
+    title: "Grupo Completo",
     price: "Desde $10,000 MXN",
-    priceLabel: "Precio base local",
+    priceLabel: "Precio base local · Solo en Ocozocoautla",
     description:
       "Ideal para bodas, carnavales y fiestas patronales de gran formato.",
-    addon: null,
+    addon: null as string | null,
     features: [
-      "10 músicos en escena con marimba tradicional, metales y percusión",
+      "Alineación completa en escena con marimba tradicional, sección de alientos y percusión",
       "Repertorio completo: vals, boleros, zapateados zoques, cumbias, mambos y corridos",
       "Sonoridad orquestal potente para salones y eventos masivos",
     ],
@@ -27,16 +27,15 @@ const PACKAGE_CARDS = [
     id: "medio-grupo",
     badge: "Formato Versátil",
     title: "Medio Grupo",
-    price: "Desde $6,500 MXN",
-    priceLabel: "Precio base local",
+    price: "Desde $7,000 MXN",
+    priceLabel: "Precio base local · Solo en Ocozocoautla",
     description:
       "Ideal para recepciones íntimas, XV años, serenatas de gala y reuniones familiares.",
-    addon:
-      "Opción adicional: Se pueden añadir 2 saxofones por $7,000 MXN en total.",
+    addon: null as string | null,
     features: [
-      "Ensamble de marimba en vivo con el timbre auténtico chiapaneco",
-      "Posibilidad de ampliar con 2 saxofones por solo $7,000 MXN en total",
-      "Excelente relación calidad-precio para eventos locales",
+      "Ensamble de marimba en vivo con 2 saxofones incluidos y base rítmica",
+      "Repertorio versátil: boleros, valses, cumbias, zapateados zoques y rancheras",
+      "Tarifa base aplicable exclusivamente dentro de Ocozocoautla, Chiapas",
     ],
     ctaLabel: "Cotizar Medio Grupo",
     featured: false,
@@ -66,11 +65,12 @@ export function Packages({
       aria-labelledby="packages-heading"
     >
       <div className="section-title">
-        <p className="eyebrow">Modalidades y Tarifas Oficiales</p>
+        <p className="eyebrow">Modalidades y Tarifas Base en Ocozocoautla</p>
         <h2 id="packages-heading">Paquetes y Qué Incluye</h2>
         <span>
-          Precios base para eventos locales en Ocozocoautla, Chiapas · Música
-          100% en vivo bajo la dirección de Heriberto &ldquo;Tito&rdquo; Gómez
+          Todos los precios mostrados aplican exclusivamente para eventos locales
+          en Ocozocoautla de Espinosa, Chiapas · Música 100% en vivo bajo la
+          dirección de Heriberto &ldquo;Tito&rdquo; Gómez
         </span>
       </div>
 
@@ -158,18 +158,22 @@ export function Packages({
           </svg>
         </div>
         <div className="packages-coverage-copy">
-          <h3>Viáticos y Cobertura por Zonas (Zonas 0–6)</h3>
+          <h3>
+            Importante: Tarifas Exclusivas para Ocozocoautla y Viáticos de
+            Traslado
+          </h3>
           <p>
-            Los precios base mostrados (<strong>$10,000 MXN</strong> Grupo
-            Completo y <strong>$6,500 MXN</strong> Medio Grupo /{" "}
-            <strong>$7,000 MXN</strong> con 2 saxofones) aplican para eventos
-            locales en <strong>Ocozocoautla</strong>.
+            Todos los precios base mostrados (<strong>$10,000 MXN</strong>{" "}
+            Grupo Completo y <strong>$7,000 MXN</strong> Medio Grupo con 2
+            saxofones) aplican única y exclusivamente para eventos locales
+            dentro de <strong>Ocozocoautla de Espinosa, Chiapas</strong>.
           </p>
           <p>
-            Salidas a otros municipios (ej. <strong>Cristóbal Obregón</strong>,{" "}
-            <strong>Tuxtla</strong>) o estados (ej.{" "}
-            <strong>Agua Dulce, Veracruz</strong>) requieren cotización de
-            flete según la zona (<strong>Zonas 0-6</strong>).
+            Cualquier salida fuera de Ocozocoautla —hacia otros municipios (ej.{" "}
+            <strong>Cristóbal Obregón</strong>,{" "}
+            <strong>Tuxtla Gutiérrez</strong>) o estados (ej.{" "}
+            <strong>Agua Dulce, Veracruz</strong>)— requiere cotización
+            adicional de flete y viáticos según la distancia.
           </p>
         </div>
       </aside>

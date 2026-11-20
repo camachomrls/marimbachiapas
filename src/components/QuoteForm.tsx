@@ -69,7 +69,9 @@ export function QuoteForm({
   };
 
   const formCard = (
-    <div className={`quote-form-card ${embedded ? "is-embedded" : ""}`}>
+    <div
+      className={`quote-form-container quote-form-card ${embedded ? "is-embedded" : ""}`}
+    >
       <div className="quote-form-header">
         <p className="eyebrow">Cotización Inmediata</p>
         <h3>Solicita disponibilidad y presupuesto por WhatsApp</h3>
@@ -142,7 +144,7 @@ export function QuoteForm({
         </div>
 
         <div className="quote-form-actions">
-          <button type="submit" className="quote-submit-btn">
+          <button type="submit" className="quote-submit-btn btn-whatsapp">
             <svg
               aria-hidden="true"
               className="icon"
