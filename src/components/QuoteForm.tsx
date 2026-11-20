@@ -1,4 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
+import { CustomSelect } from "./CustomSelect";
 
 const WHATSAPP_NUMBER = "5219681065475";
 
@@ -13,7 +14,7 @@ const EVENT_TYPE_OPTIONS = [
 ] as const;
 
 const HOURS_OPTIONS = [
-  "[COMPLETAR: mínimo de horas] / Por definir",
+  "Por definir",
   "1 hora",
   "2 horas",
   "3 horas",
@@ -84,20 +85,17 @@ export function QuoteForm({
       <form className="quote-form-body" onSubmit={handleSubmit}>
         <div className="quote-form-grid">
           <div className="quote-form-field">
-            <label htmlFor={`${id}-event-type`}>Tipo de evento</label>
-            <select
+            <label id={`${id}-event-type-label`} htmlFor={`${id}-event-type`}>
+              Tipo de evento
+            </label>
+            <CustomSelect
               id={`${id}-event-type`}
-              name="eventType"
+              labelId={`${id}-event-type-label`}
+              options={EVENT_TYPE_OPTIONS}
               value={eventType}
-              onChange={(e) => setEventType(e.target.value)}
-              required
-            >
-              {EVENT_TYPE_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
+              onChange={setEventType}
+              placeholder="Selecciona..."
+            />
           </div>
 
           <div className="quote-form-field">
@@ -126,20 +124,17 @@ export function QuoteForm({
           </div>
 
           <div className="quote-form-field">
-            <label htmlFor={`${id}-hours`}>Horas de servicio</label>
-            <select
+            <label id={`${id}-hours-label`} htmlFor={`${id}-hours`}>
+              Horas de servicio
+            </label>
+            <CustomSelect
               id={`${id}-hours`}
-              name="hours"
+              labelId={`${id}-hours-label`}
+              options={HOURS_OPTIONS}
               value={hours}
-              onChange={(e) => setHours(e.target.value)}
-              required
-            >
-              {HOURS_OPTIONS.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
+              onChange={setHours}
+              placeholder="Por definir"
+            />
           </div>
         </div>
 

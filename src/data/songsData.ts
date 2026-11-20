@@ -420,7 +420,7 @@ export const songsData: Song[] = [
     title: "La Limosna",
     genre: "Cumbias y mambos",
     genreLabel: "Danzón / Chachachá",
-    description: "Tema de Indalecio Ramírez interpretado con la elegancia y el compás pausado del danzón, abriendo paso en su parte final al chachachá sobre la madera.",
+    description: "Pieza interpretada con la elegancia y el compás pausado del danzón, abriendo paso en su parte final al chachachá sobre la madera.",
     src: "/marimba chiapas exitos romanticos/La limosna.mp3",
   },
   {
@@ -520,7 +520,7 @@ export const songsData: Song[] = [
     title: "Ponzoqui",
     genre: "Zapateados",
     genreLabel: "Zapateado Zoque",
-    description: "Son zoque en compás de 6/8 ligado a las comparsas festivas de Chiapas, sostenido por el baqueteo ágil sobre los teclados de hormiguillo.",
+    description: "Composición del Mtro. Rogelio Gómez; son zoque en compás de 6/8 ligado a las comparsas festivas de Chiapas, sostenido por el baqueteo ágil sobre los teclados de hormiguillo.",
     src: "/Audios para carnaval marimba chis-20240215T194158Z-001/Audios para carnaval marimba chis/Ponzoqui.mp3",
   },
   {
@@ -640,7 +640,7 @@ export const songsData: Song[] = [
     title: "El Alfarero",
     genre: "Zapateados",
     genreLabel: "Zapateado Tradicional",
-    description: "Zapateado tradicional chiapaneco en homenaje a los artesanos, interpretado con pulso festivo y agilidad en las baquetas sobre la marimba.",
+    description: "Composición del Mtro. Rogelio Gómez; zapateado tradicional chiapaneco en homenaje a los artesanos, interpretado con pulso festivo y agilidad en las baquetas sobre la marimba.",
     src: "/audios_drive/EL ALFARERA.MP3",
   },
   {
