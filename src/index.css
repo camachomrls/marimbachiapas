@@ -38,7 +38,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -53,7 +54,8 @@ img {
 
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
+input:focus-visible,
+select:focus-visible {
   outline: 3px solid #f2c38c;
   outline-offset: 3px;
 }
@@ -221,7 +223,7 @@ input:focus-visible {
 
 .page-hero.home-hero {
   min-height: 15rem;
-  padding-top: 4.55rem;
+  padding-top: 5.5rem;
 }
 
 .heritage-pattern {
@@ -764,29 +766,41 @@ input:focus-visible {
 .filters {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.55rem;
+}
+
+.repertoire-pill-filters {
+  margin-bottom: 0.4rem;
 }
 
 .filters button {
   min-height: 2.75rem;
-  padding: 0.6rem 1.15rem;
-  border: 1px solid rgba(139, 56, 39, 0.52);
+  padding: 0.6rem 1.2rem;
+  border: 1.5px solid #c19763;
   border-radius: 999px;
-  color: var(--red);
-  background: transparent;
+  color: #3b2818;
+  background: #fffaf1;
   font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   transition:
     color 160ms ease,
     border-color 160ms ease,
-    background 160ms ease;
+    background 160ms ease,
+    transform 160ms ease;
 }
 
-.filters button:hover,
+.filters button:hover {
+  color: #3b2818;
+  border-color: #9d7a50;
+  background: #f3e4c7;
+}
+
 .filters button.active {
-  color: #fff0d2;
-  background: var(--red);
+  color: #e0caa5;
+  border-color: #3b2818;
+  background: #3b2818;
+  box-shadow: 0 3px 10px rgba(59, 40, 24, 0.18);
 }
 
 .search-box {
@@ -1120,9 +1134,14 @@ input:focus-visible {
 
 .floating-whatsapp {
   position: fixed;
-  z-index: 25;
+  z-index: 45;
   right: 1rem;
   bottom: 0.7rem;
+  transition:
+    bottom 220ms ease,
+    transform 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .not-found {
@@ -1189,31 +1208,29 @@ input:focus-visible {
 
   .site-header .brand {
     display: flex;
-    position: absolute;
-    top: calc(4.35rem + env(safe-area-inset-top, 0px));
-    left: 50%;
-    text-align: center;
-    transform: translateX(-50%);
+    position: static;
+    transform: none;
+    text-align: left;
   }
 
   .site-header .brand-bars {
-    display: none;
+    display: flex;
   }
 
   .site-header .brand > span:last-child {
-    width: 20rem;
-    font-size: 1.55rem;
-    line-height: 1.02;
+    width: auto;
+    font-size: 0.78rem;
+    line-height: 0.96;
   }
 
   .site-header .brand strong {
-    font-size: 2.15rem;
-    letter-spacing: -0.01em;
+    font-size: 0.96rem;
+    letter-spacing: 0;
   }
 
   .menu-toggle {
     display: grid;
-    margin-left: 0;
+    margin-left: auto;
     margin-top: env(safe-area-inset-top, 0px);
   }
 
@@ -1246,24 +1263,15 @@ input:focus-visible {
 
   .page-hero,
   .page-hero.home-hero {
-    min-height: calc(15.7rem + env(safe-area-inset-top, 0px));
-    padding: calc(6.7rem + env(safe-area-inset-top, 0px)) 0.8rem 4.6rem;
-  }
-
-  .page-hero.home-hero {
-    min-height: calc(18.6rem + env(safe-area-inset-top, 0px));
-    padding-top: calc(8.2rem + env(safe-area-inset-top, 0px));
+    min-height: auto;
+    padding: calc(5.8rem + env(safe-area-inset-top, 0px)) 0.85rem 4.6rem;
   }
 
   .page-hero h1 {
-    max-width: 22rem;
+    max-width: 24rem;
     margin-inline: auto;
-    font-size: 2.1rem;
-    line-height: 0.95;
-  }
-
-  .page-hero.home-hero h1 {
-    display: none;
+    font-size: clamp(1.95rem, 6.8vw, 2.5rem);
+    line-height: 1.06;
   }
 
   .page-hero .hero-inner > p:last-of-type {
@@ -2198,11 +2206,6 @@ input:focus-visible {
   .videos-grid {
     grid-template-columns: 1fr;
   }
-  .mini-player-bar {
-    bottom: 4.5rem;
-    padding: 0.5rem 0.85rem;
-    gap: 0.6rem;
-  }
   .shuffle-discovery-card,
   .shuffle-discovery-card.is-compact {
     padding: 1.25rem 1.15rem;
@@ -2222,5 +2225,510 @@ input:focus-visible {
     min-height: 3.2rem;
     padding: 0.7rem 1.05rem;
     font-size: 0.88rem;
+  }
+}
+
+/* ==========================================================================
+   Mini-Formulario de Cotización Directa a WhatsApp (QuoteForm)
+   ========================================================================== */
+.quote-form-section {
+  padding: 1rem 0 4.5rem;
+}
+
+.quote-form-card {
+  padding: 2.2rem 2.4rem;
+  border: 2px solid #e0caa5;
+  border-radius: var(--organic-radius);
+  background:
+    radial-gradient(circle at 95% 10%, rgba(193, 151, 99, 0.16), transparent 45%),
+    #fffaf1;
+  box-shadow:
+    0 8px 24px rgba(70, 40, 24, 0.09),
+    inset 0 0 0 1px rgba(193, 151, 99, 0.25);
+}
+
+.quote-form-card.is-embedded {
+  margin-top: 1.8rem;
+  padding: 1.65rem 1.75rem;
+  text-align: left;
+  border-color: #c19763;
+  background: #fffcf6;
+  box-shadow: 0 6px 18px rgba(70, 40, 24, 0.07);
+}
+
+.quote-form-header {
+  max-width: 44rem;
+  margin: 0 auto 1.6rem;
+  text-align: center;
+}
+
+.quote-form-card.is-embedded .quote-form-header {
+  margin-inline: 0;
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.quote-form-header h3 {
+  margin: 0.35rem 0 0.45rem;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(1.65rem, 3vw, 2.3rem);
+  font-weight: 400;
+  line-height: 1.08;
+  color: var(--brown);
+}
+
+.quote-form-header p:not(.eyebrow) {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: #6d5445;
+}
+
+.quote-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.quote-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.quote-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.quote-form-field label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #5c3a28;
+}
+
+.quote-form-field input,
+.quote-form-field select {
+  width: 100%;
+  min-height: 2.95rem;
+  padding: 0.65rem 0.9rem;
+  border: 1.5px solid #c19763;
+  border-radius: 0.85rem;
+  background: #fffdf8;
+  color: var(--brown);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.quote-form-field input::placeholder {
+  color: #9b8270;
+}
+
+.quote-form-field input:hover,
+.quote-form-field select:hover {
+  border-color: #9d7a50;
+}
+
+.quote-form-field input:focus,
+.quote-form-field select:focus {
+  outline: none;
+  border-color: #4e2d22;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(224, 202, 165, 0.55);
+}
+
+.quote-form-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  padding-top: 0.25rem;
+}
+
+.quote-form-card.is-embedded .quote-form-actions {
+  align-items: stretch;
+}
+
+.quote-submit-btn {
+  min-height: 3.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.85rem;
+  border: 0;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #2e7d32;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow:
+    0 4px 10px rgba(46, 125, 50, 0.28),
+    0 8px 18px rgba(46, 125, 50, 0.14);
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.quote-submit-btn:hover {
+  background: #1b5e20;
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 14px rgba(27, 94, 32, 0.34),
+    0 10px 22px rgba(27, 94, 32, 0.18);
+}
+
+.quote-submit-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.quote-form-note {
+  font-size: 0.8rem;
+  color: #795d4d;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .quote-form-card,
+  .quote-form-card.is-embedded {
+    padding: 1.45rem 1.15rem;
+  }
+
+  .quote-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .quote-submit-btn {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Sección de Paquetes y Cobertura Comercial (Packages)
+   ========================================================================== */
+.packages-section {
+  padding: 3.5rem 0 4.5rem;
+}
+
+.packages-grid {
+  max-width: 62rem;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.package-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.4rem;
+  padding: 2rem;
+  border: 2px solid #e0caa5;
+  border-radius: var(--organic-radius);
+  background: #fffaf1;
+  color: var(--brown);
+  box-shadow: 0 8px 22px rgba(70, 40, 24, 0.08);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.package-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(70, 40, 24, 0.13);
+}
+
+.package-card.is-featured {
+  border-color: #c19763;
+  background: linear-gradient(155deg, #4e2d22 0%, #3a2018 100%);
+  color: #fff4da;
+  box-shadow:
+    0 12px 28px rgba(48, 32, 25, 0.22),
+    inset 0 0 0 1px rgba(224, 202, 165, 0.22);
+}
+
+.package-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: #f3e3c3;
+  color: #5c3a28;
+  border: 1px solid #c19763;
+}
+
+.package-card.is-featured .package-badge {
+  background: #e0caa5;
+  color: #302019;
+  border-color: #e0caa5;
+}
+
+.package-card h3 {
+  margin: 0.75rem 0 0.5rem;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.package-price-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.package-price-box strong {
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  color: var(--red-dark);
+}
+
+.package-card.is-featured .package-price-box strong {
+  color: #f4d9a6;
+}
+
+.package-price-box span {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #7c5c46;
+}
+
+.package-card.is-featured .package-price-box span {
+  color: #e0caa5;
+}
+
+.package-description {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #5d4537;
+}
+
+.package-card.is-featured .package-description {
+  color: #ead6ba;
+}
+
+.package-addon {
+  margin-top: 0.95rem;
+  padding: 0.75rem 0.95rem;
+  border-radius: 0.9rem;
+  border: 1px solid #c19763;
+  background: rgba(224, 202, 165, 0.35);
+  color: var(--brown);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.package-features {
+  margin: 0;
+  padding: 1rem 0 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  border-top: 1px solid rgba(193, 151, 99, 0.35);
+}
+
+.package-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #463126;
+}
+
+.package-card.is-featured .package-features li {
+  color: #f9ecd5;
+}
+
+.package-features .icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: 0.15rem;
+  color: #9f402e;
+}
+
+.package-card.is-featured .package-features .icon {
+  color: #e0caa5;
+}
+
+.package-cta-btn {
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.35rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  background: #4e2d22;
+  color: #fff4da;
+  transition:
+    transform 160ms ease,
+    background 160ms ease;
+}
+
+.package-cta-btn:hover {
+  transform: translateY(-2px);
+  background: #653829;
+}
+
+.package-card.is-featured .package-cta-btn {
+  background: #c19763;
+  color: #26160f;
+}
+
+.package-card.is-featured .package-cta-btn:hover {
+  background: #e0caa5;
+}
+
+.packages-coverage-note {
+  max-width: 62rem;
+  margin: 1.75rem auto 0;
+  padding: 1.35rem 1.65rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  border-radius: 1.4rem;
+  border: 1.5px solid #c19763;
+  background: rgba(224, 202, 165, 0.28);
+  color: var(--brown);
+}
+
+.packages-coverage-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #4e2d22;
+  color: #e0caa5;
+}
+
+.packages-coverage-copy h3 {
+  margin: 0 0 0.35rem;
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--brown);
+}
+
+.packages-coverage-copy p {
+  margin: 0.25rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #4e3528;
+}
+
+@media (max-width: 780px) {
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .package-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .packages-coverage-note {
+    flex-direction: column;
+    padding: 1.2rem 1.15rem;
+  }
+}
+
+/* ==========================================================================
+   Fase 3: Filtros Píldora Desplazables y Anti-Solapamiento Móvil
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .floating-whatsapp.has-active-player,
+  .mini-player-bar ~ .floating-whatsapp {
+    bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (max-width: 768px) {
+  .filters,
+  .repertoire-pill-filters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-inline: -0.55rem;
+    padding: 0.4rem 0.55rem 0.75rem;
+    scrollbar-width: none;
+  }
+
+  .filters::-webkit-scrollbar,
+  .repertoire-pill-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filters button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .mini-player-bar {
+    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    width: calc(100% - 1.5rem);
+    padding: 0.55rem 0.9rem;
+    gap: 0.6rem;
+  }
+
+  .floating-whatsapp {
+    right: 0.75rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .floating-whatsapp.has-active-player,
+  .mini-player-bar ~ .floating-whatsapp {
+    bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .site-footer {
+    padding-bottom: 6.5rem;
+  }
+
+  .site-footer:has(~ .mini-player-bar) {
+    padding-bottom: 9.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .mini-player-bar {
+    padding: 0.5rem 0.75rem;
+    gap: 0.45rem;
+  }
+
+  .mini-player-bar .equalizer-anim {
+    display: none;
+  }
+
+  .mini-player-controls {
+    gap: 0.25rem;
   }
 }

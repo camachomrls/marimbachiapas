@@ -2,17 +2,19 @@ import {
   useCallback,
   useEffect,
   useMemo,
-  useRef,
   useState,
+  type MouseEvent,
   type ReactNode,
 } from "react";
+import Packages from "./components/Packages";
+import QuoteForm from "./components/QuoteForm";
 import {
-  genreFilters,
   songsData,
   type Genre,
   type Song,
 } from "./data/songsData";
-import { videosData, type VideoItem } from "./data/videosData";
+import { videosData } from "./data/videosData";
+import { useAudioPlayer } from "./hooks/useAudioPlayer";
 
 const BASE_WHATSAPP_NUMBER = "529681065475";
 const DEFAULT_WHATSAPP_MSG =
@@ -35,30 +37,79 @@ function normalizeText(value: string) {
     .trim();
 }
 
-function buildShuffledQueue(
+type FilterCategory =
+  | "Todo"
+  | "Boleros"
+  | "Vals/Rancheras"
+  | "Cumbias/Mambos"
+  | "Zapateados"
+  | "Corridos";
+
+const REPERTOIRE_CATEGORY_FILTERS: {
+  label: FilterCategory;
+  genre: Genre | "Todo";
+}[] = [
+  { label: "Todo", genre: "Todo" },
+  { label: "Boleros", genre: "Boleros" },
+  { label: "Vals/Rancheras", genre: "Vals y rancheras" },
+  { label: "Cumbias/Mambos", genre: "Cumbias y mambos" },
+  { label: "Zapateados", genre: "Zapateados" },
+  { label: "Corridos", genre: "Corridos" },
+];
+
+function filterSongsByCategory(
   songs: Song[],
-  firstSong?: Song | null,
-  avoidFirstId?: string,
+  selectedGenre: FilterCategory,
+  query = "",
 ): Song[] {
-  const pool = firstSong
-    ? songs.filter((s) => s.id !== firstSong.id)
-    : [...songs];
+  const activeFilter = REPERTOIRE_CATEGORY_FILTERS.find(
+    (item) => item.label === selectedGenre,
+  );
+  const targetGenre = activeFilter ? activeFilter.genre : "Todo";
+  const normalizedQuery = normalizeText(query);
 
-  for (let i = pool.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = pool[i];
-    pool[i] = pool[j];
-    pool[j] = temp;
-  }
+  return songs.filter((song) => {
+    const matchesGenre =
+      targetGenre === "Todo" || song.genre === targetGenre;
+    const matchesQuery =
+      !normalizedQuery ||
+      normalizeText(song.title).includes(normalizedQuery) ||
+      normalizeText(song.genreLabel).includes(normalizedQuery) ||
+      normalizeText(song.description).includes(normalizedQuery);
+    return matchesGenre && matchesQuery;
+  });
+}
 
-  if (!firstSong && avoidFirstId && pool.length > 1 && pool[0].id === avoidFirstId) {
-    const swapIdx = 1 + Math.floor(Math.random() * (pool.length - 1));
-    const temp = pool[0];
-    pool[0] = pool[swapIdx];
-    pool[swapIdx] = temp;
-  }
-
-  return firstSong ? [firstSong, ...pool] : pool;
+function RepertoireFilterPills({
+  selectedGenre,
+  onSelectGenre,
+}: {
+  selectedGenre: FilterCategory;
+  onSelectGenre: (category: FilterCategory) => void;
+}) {
+  return (
+    <div
+      className="filters repertoire-pill-filters"
+      role="tablist"
+      aria-label="Filtrar grabaciones por categoría"
+    >
+      {REPERTOIRE_CATEGORY_FILTERS.map((item) => {
+        const isActive = selectedGenre === item.label;
+        return (
+          <button
+            key={item.label}
+            type="button"
+            role="tab"
+            aria-selected={isActive}
+            className={isActive ? "active" : ""}
+            onClick={() => onSelectGenre(item.label)}
+          >
+            {item.label}
+          </button>
+        );
+      })}
+    </div>
+  );
 }
 
 function Icon({
@@ -283,14 +334,18 @@ function Header({
             Inicio
           </a>
           <a
-            className={currentRoute === "/repertorio" ? "active" : ""}
-            href="/repertorio"
+            className={
+              currentRoute === "/repertorio" || currentRoute === "/grabaciones"
+                ? "active"
+                : ""
+            }
+            href="/grabaciones"
             onClick={(e) => {
               e.preventDefault();
-              handleNavClick("/repertorio");
+              handleNavClick("/grabaciones");
             }}
           >
-            Repertorio ({songsData.length})
+            Grabaciones ({songsData.length})
           </a>
           <a
             className={
@@ -323,13 +378,22 @@ function PageHero({
   title,
   subtitle,
   home = false,
-  onNavigate,
 }: {
   title: string;
   subtitle: string;
   home?: boolean;
-  onNavigate?: (route: string) => void;
 }) {
+  const scrollToSection = (
+    e: MouseEvent<HTMLAnchorElement>,
+    sectionId: string,
+  ) => {
+    const target = document.getElementById(sectionId);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section className={`page-hero ${home ? "home-hero" : ""}`}>
       <div className="heritage-pattern" aria-hidden="true" />
@@ -350,7 +414,7 @@ function PageHero({
         <h1>{title}</h1>
         <p>{subtitle}</p>
 
-        {home && onNavigate && (
+        {home && (
           <div
             style={{
               display: "flex",
@@ -361,15 +425,22 @@ function PageHero({
               flexWrap: "wrap",
             }}
           >
-            <WhatsAppButton />
-            <button
-              type="button"
+            <a
+              href="#cotizar-inicio"
+              className="whatsapp-button"
+              onClick={(e) => scrollToSection(e, "cotizar-inicio")}
+            >
+              <Icon name="calendar" />
+              <span>Cotizar mi Evento</span>
+            </a>
+            <a
+              href="#repertorio-musical"
               className="cream-button"
-              onClick={() => onNavigate("/repertorio")}
+              onClick={(e) => scrollToSection(e, "repertorio-musical")}
             >
               <Icon name="music" />
-              <span>Ver Repertorio ({songsData.length} Canciones)</span>
-            </button>
+              <span>Escuchar Grabaciones ({songsData.length})</span>
+            </a>
           </div>
         )}
       </div>
@@ -460,15 +531,17 @@ function SectionTitle({
   eyebrow,
   title,
   description,
+  headingId,
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
+  headingId?: string;
 }) {
   return (
     <div className="section-title">
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2>{title}</h2>
+      <h2 id={headingId}>{title}</h2>
       {description && <span>{description}</span>}
     </div>
   );
@@ -478,6 +551,7 @@ function VideoGallery() {
   return (
     <section className="videos-section shell" aria-labelledby="videos-heading">
       <SectionTitle
+        headingId="videos-heading"
         eyebrow="Galería en Vivo"
         title="Melodías donde las maderas cantan"
         description="Disfruta de nuestras presentaciones en vivo y del auténtico sonido orquestal chiapaneco"
@@ -500,50 +574,6 @@ function VideoGallery() {
             </div>
           </article>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function PresentationBanner({
-  onNavigate,
-}: {
-  onNavigate: (route: string) => void;
-}) {
-  return (
-    <section className="presentation-section shell">
-      <div className="presentation-card">
-        <div className="presentation-img-wrap">
-          <img
-            src="/marimbachis.jpg"
-            alt="Marimba Orquesta Chiapas en presentación en vivo"
-            loading="lazy"
-          />
-          <span className="presentation-badge">Mtro. Rogelio Gómez</span>
-        </div>
-        <div className="presentation-text">
-          <p className="eyebrow">Auténtica Tradición Coiteca</p>
-          <h2>El Sonido de Chiapas en tu Fiesta</h2>
-          <p>
-            Con años de trayectoria artística, la <strong>Marimba Orquesta Chiapas</strong>{" "}
-            combina el brillo tradicional del teclado de hormiguillo con la fuerza
-            de los metales y percusiones. Desde el majestuoso Carnaval Zoque de
-            Ocozocoautla hasta elegantes recepciones en todo el estado, llevamos
-            alegría y distinción a cada rincón.
-          </p>
-          <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}>
-            <WhatsAppButton short={false} />
-            <a
-              href={FACEBOOK_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="facebook-btn"
-            >
-              <Icon name="facebook" />
-              <span>Facebook Oficial</span>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -734,7 +764,7 @@ function ShuffleDiscoveryCard({
               )}
             </>
           ) : (
-            `Descubre y escucha nuestras ${totalSongs} melodías al azar de forma ininterrumpida. Todas las canciones se reproducen una tras otra sin repetirse hasta recorrer todo el repertorio.`
+            `Descubre y escucha nuestras ${totalSongs} melodías al azar de forma ininterrumpida. Todas las canciones se reproducen una tras otra sin repetirse hasta recorrer todas las grabaciones.`
           )}
         </p>
       </div>
@@ -904,111 +934,119 @@ function HomePage({
   onTogglePlay: (song: Song) => void;
   onStartOrSkipShuffle: () => void;
 }) {
-  // Top featured tracks from distinct genres
-  const featuredSongs = useMemo(() => {
-    return [
-      songsData.find((s) => s.id === "popurri-fiesta-coiteca"),
-      songsData.find((s) => s.id === "camino-verde"),
-      songsData.find((s) => s.id === "quien-sera"),
-    ].filter(Boolean) as Song[];
-  }, []);
+  const [selectedGenre, setSelectedGenre] = useState<FilterCategory>("Todo");
+
+  const { previewSongs, totalInCategory } = useMemo(() => {
+    if (selectedGenre === "Todo") {
+      const featured = [
+        songsData.find((s) => s.id === "popurri-fiesta-coiteca"),
+        songsData.find((s) => s.id === "camino-verde"),
+        songsData.find((s) => s.id === "quien-sera"),
+      ].filter(Boolean) as Song[];
+      return { previewSongs: featured, totalInCategory: songsData.length };
+    }
+
+    const matching = filterSongsByCategory(songsData, selectedGenre);
+    return {
+      previewSongs: matching.slice(0, 3),
+      totalInCategory: matching.length,
+    };
+  }, [selectedGenre]);
 
   return (
-    <>
-      <main>
-        <PageHero
-          home
-          title="Marimba Orquesta Chiapas"
-          subtitle="Del Mtro. Rogelio Gómez · Amenizamos todo tipo de eventos en Chiapas y sus alrededores"
-          onNavigate={onNavigate}
+    <main>
+      {/* 1. Hero enfocado a bodas y eventos en Chiapas con CTA hacia el formulario */}
+      <PageHero
+        home
+        title="Marimba Orquesta Chiapas"
+        subtitle="Del Mtro. Rogelio Gómez · Amenizamos todo tipo de eventos en Chiapas y sus alrededores"
+      />
+
+      {/* 2. Prueba Social inmediata (videos en vivo) */}
+      <VideoGallery />
+
+      <div className="cenefa-marqueteria" aria-hidden="true" />
+
+      {/* 3. Muestra de grabaciones (3 tarjetas destacadas) */}
+      <section
+        className="repertoire-section shell"
+        id="repertorio-musical"
+        aria-labelledby="home-repertoire-heading"
+      >
+        <SectionTitle
+          headingId="home-repertoire-heading"
+          eyebrow="Grabaciones de Muestra"
+          title="Muestras Destacadas de Nuestras Grabaciones"
+          description="Escucha la calidad y virtuosismo de nuestras grabaciones de muestra; explora el catálogo completo en la sección Grabaciones"
         />
 
-        <ContactPanel featured />
+        <ShuffleDiscoveryCard
+          compact
+          currentSong={currentSong}
+          isPlaying={isPlaying}
+          isShuffleMode={isShuffleMode}
+          shuffleIndex={shuffleIndex}
+          totalSongs={songsData.length}
+          nextSong={nextSong}
+          onStartOrSkipShuffle={onStartOrSkipShuffle}
+          onTogglePlayCurrent={() => {
+            if (currentSong) onTogglePlay(currentSong);
+          }}
+        />
 
-        <div className="cenefa-marqueteria" aria-hidden="true" />
+        <RepertoireFilterPills
+          selectedGenre={selectedGenre}
+          onSelectGenre={setSelectedGenre}
+        />
 
-        <PresentationBanner onNavigate={onNavigate} />
+        <div className="result-count" aria-live="polite">
+          <span>
+            Mostrando {previewSongs.length} de {totalInCategory} grabaciones
+          </span>
+          <i />
+          <span>Categoría: {selectedGenre}</span>
+        </div>
 
-        {/* Featured Preview Tracks */}
-        <section className="featured-section shell">
-          <SectionTitle
-            eyebrow="Selección Especial"
-            title="Muestras Destacadas de Nuestro Repertorio"
-            description="Escucha la calidad y virtuosismo con la que amenizamos tus momentos más memorables"
-          />
+        <div className="repertoire-grid">
+          {previewSongs.map((song, index) => (
+            <SongCardItem
+              key={song.id}
+              song={song}
+              index={index}
+              isActive={currentSong?.id === song.id}
+              isPlaying={isPlaying}
+              onTogglePlay={onTogglePlay}
+            />
+          ))}
+        </div>
 
-          <ShuffleDiscoveryCard
-            compact
-            currentSong={currentSong}
-            isPlaying={isPlaying}
-            isShuffleMode={isShuffleMode}
-            shuffleIndex={shuffleIndex}
-            totalSongs={songsData.length}
-            nextSong={nextSong}
-            onStartOrSkipShuffle={onStartOrSkipShuffle}
-            onTogglePlayCurrent={() => {
-              if (currentSong) onTogglePlay(currentSong);
+        <div style={{ textAlign: "center", marginTop: "2rem" }}>
+          <button
+            type="button"
+            className="text-action"
+            style={{
+              cursor: "pointer",
+              background: "transparent",
+              border: 0,
             }}
-          />
+            onClick={() => onNavigate("/grabaciones")}
+          >
+            <span>Explorar las {songsData.length} grabaciones completas</span>
+            <Icon name="arrow" />
+          </button>
+        </div>
+      </section>
 
-          <div className="repertoire-grid">
-            {featuredSongs.map((song, index) => (
-              <SongCardItem
-                key={song.id}
-                song={song}
-                index={index}
-                isActive={currentSong?.id === song.id}
-                isPlaying={isPlaying}
-                onTogglePlay={onTogglePlay}
-              />
-            ))}
-          </div>
-          <div style={{ textAlign: "center", marginTop: "2rem" }}>
-            <button
-              type="button"
-              className="text-action"
-              style={{
-                cursor: "pointer",
-                background: "transparent",
-                border: 0,
-              }}
-              onClick={() => onNavigate("/repertorio")}
-            >
-              <span>Explorar las {songsData.length} melodías completas</span>
-              <Icon name="arrow" />
-            </button>
-          </div>
-        </section>
+      <div className="cenefa-marqueteria" aria-hidden="true" />
 
-        <div className="cenefa-marqueteria" aria-hidden="true" />
+      {/* 4. Paquetes y qué incluye + cobertura por zonas */}
+      <Packages id="paquetes" quoteTargetId="cotizar-inicio" />
 
-        {/* Live Video Showcase */}
-        <VideoGallery />
+      <div className="cenefa-marqueteria" aria-hidden="true" />
 
-        {/* Booking CTA Banner */}
-        <section className="home-booking shell">
-          <div>
-            <p className="eyebrow">Celebremos juntos</p>
-            <h2>La música perfecta para tu fecha especial.</h2>
-          </div>
-          <p>
-            Bodas, XV años, carnavales, serenatas, fiestas patronales y eventos
-            empresariales con la excelencia y calidez del Mtro. Rogelio Gómez.
-          </p>
-          <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}>
-            <WhatsAppButton />
-            <button
-              type="button"
-              className="cream-button"
-              onClick={() => onNavigate("/reserva")}
-            >
-              <span>Conocer opciones</span>
-              <Icon name="arrow" />
-            </button>
-          </div>
-        </section>
-      </main>
-    </>
+      {/* 5. Formulario de cotización directa a WhatsApp */}
+      <QuoteForm id="cotizar-inicio" />
+    </main>
   );
 }
 
@@ -1029,28 +1067,19 @@ function RepertoirePage({
   onTogglePlay: (song: Song) => void;
   onStartOrSkipShuffle: () => void;
 }) {
-  const [genre, setGenre] =
-    useState<(typeof genreFilters)[number]>("Todo");
+  const [selectedGenre, setSelectedGenre] = useState<FilterCategory>("Todo");
   const [query, setQuery] = useState("");
 
-  const filteredSongs = useMemo(() => {
-    const normalizedQuery = normalizeText(query);
-    return songsData.filter((song) => {
-      const matchesGenre = genre === "Todo" || song.genre === genre;
-      const matchesQuery =
-        !normalizedQuery ||
-        normalizeText(song.title).includes(normalizedQuery) ||
-        normalizeText(song.genreLabel).includes(normalizedQuery) ||
-        normalizeText(song.description).includes(normalizedQuery);
-      return matchesGenre && matchesQuery;
-    });
-  }, [genre, query]);
+  const filteredSongs = useMemo(
+    () => filterSongsByCategory(songsData, selectedGenre, query),
+    [selectedGenre, query],
+  );
 
   return (
     <main>
       <PageHero
-        title="Repertorio Oficial"
-        subtitle={`Catálogo completo de ${songsData.length} melodías para tu evento · Selecciona un género o busca tu canción favorita`}
+        title="Grabaciones"
+        subtitle={`Catálogo completo de ${songsData.length} grabaciones de muestra · Selecciona un género o busca una melodía`}
       />
 
       <div className="cenefa-marqueteria" aria-hidden="true" />
@@ -1070,26 +1099,10 @@ function RepertoirePage({
         />
 
         <div className="repertoire-tools">
-          <div className="filters" role="tablist" aria-label="Filtrar repertorio por género">
-            {genreFilters.map((item) => {
-              const count =
-                item === "Todo"
-                  ? songsData.length
-                  : songsData.filter((s) => s.genre === item).length;
-              return (
-                <button
-                  className={genre === item ? "active" : ""}
-                  type="button"
-                  key={item}
-                  role="tab"
-                  aria-selected={genre === item}
-                  onClick={() => setGenre(item)}
-                >
-                  {item} ({count})
-                </button>
-              );
-            })}
-          </div>
+          <RepertoireFilterPills
+            selectedGenre={selectedGenre}
+            onSelectGenre={setSelectedGenre}
+          />
 
           <label className="search-box">
             <span className="sr-only">Buscar melodía</span>
@@ -1107,7 +1120,7 @@ function RepertoirePage({
         <div className="result-count" aria-live="polite">
           <span>{filteredSongs.length} melodías encontradas</span>
           <i />
-          <span>Categoría: {genre}</span>
+          <span>Categoría: {selectedGenre}</span>
         </div>
 
         {filteredSongs.length ? (
@@ -1128,13 +1141,13 @@ function RepertoirePage({
             <Icon name="music" />
             <h2>No encontramos esa melodía</h2>
             <p>
-              Prueba con otro título o limpia el filtro para ver todo el
-              repertorio disponible.
+              Prueba con otro título o limpia el filtro para ver todas las
+              grabaciones disponibles.
             </p>
             <button
               type="button"
               onClick={() => {
-                setGenre("Todo");
+                setSelectedGenre("Todo");
                 setQuery("");
               }}
             >
@@ -1158,8 +1171,6 @@ function BookingPage() {
   ];
 
   const [selectedEvent, setSelectedEvent] = useState<string>(eventTypes[0]);
-
-  const customMessage = `Hola, me gustaría cotizar a la Marimba Orquesta Chiapas para un evento de: ${selectedEvent}. ¿Me podrían dar información de presupuesto y disponibilidad?`;
 
   return (
     <main>
@@ -1214,6 +1225,12 @@ function BookingPage() {
               </div>
             </div>
 
+            <QuoteForm
+              id="cotizar-reserva"
+              initialEventType={selectedEvent}
+              embedded
+            />
+
             <div
               style={{
                 display: "flex",
@@ -1223,7 +1240,6 @@ function BookingPage() {
                 marginTop: "1.5rem",
               }}
             >
-              <WhatsAppButton customText={customMessage} />
               <a
                 href="tel:+529681065475"
                 className="cream-button"
@@ -1249,8 +1265,8 @@ function BookingPage() {
             <p>Datos del Servicio</p>
             <dl>
               <div>
-                <dt>Dirección Artística</dt>
-                <dd>Mtro. Rogelio Gómez</dd>
+                <dt>Atención y Dirección</dt>
+                <dd>Heriberto &ldquo;Tito&rdquo; Gómez</dd>
               </div>
               <div>
                 <dt>Horario de atención</dt>
@@ -1317,13 +1333,13 @@ function Footer({ onNavigate }: { onNavigate: (route: string) => void }) {
             Inicio
           </a>
           <a
-            href="/repertorio"
+            href="/grabaciones"
             onClick={(e) => {
               e.preventDefault();
-              onNavigate("/repertorio");
+              onNavigate("/grabaciones");
             }}
           >
-            Repertorio ({songsData.length})
+            Grabaciones ({songsData.length})
           </a>
           <a
             href="/reserva"
@@ -1366,7 +1382,7 @@ function NotFound({ onNavigate }: { onNavigate: (route: string) => void }) {
     <main className="not-found">
       <Icon name="music" />
       <p className="eyebrow">Error 404</p>
-      <h1>Esta melodía no está en el repertorio.</h1>
+      <h1>Esta melodía no está en las grabaciones.</h1>
       <button
         type="button"
         className="cream-button"
@@ -1386,206 +1402,19 @@ export default function App() {
     return raw;
   });
 
-  const [currentSong, setCurrentSong] = useState<Song | null>(null);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [isShuffleMode, setIsShuffleMode] = useState<boolean>(false);
-  const [shuffleQueue, setShuffleQueue] = useState<Song[]>([]);
-  const [shuffleIndex, setShuffleIndex] = useState<number>(0);
-
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const currentSongRef = useRef<Song | null>(null);
-  const isShuffleModeRef = useRef<boolean>(false);
-  const shuffleQueueRef = useRef<Song[]>([]);
-  const shuffleIndexRef = useRef<number>(0);
-
-  const playSongDirect = useCallback((song: Song) => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    currentSongRef.current = song;
-    setCurrentSong(song);
-    audio.src = encodeURI(song.src);
-    audio.currentTime = 0;
-    audio
-      .play()
-      .then(() => setIsPlaying(true))
-      .catch((err) => console.error("Error al iniciar audio:", err));
-  }, []);
-
-  const advanceToNextShuffleTrack = useCallback(() => {
-    let queue = shuffleQueueRef.current;
-    let nextIdx = shuffleIndexRef.current + 1;
-
-    if (queue.length === 0 || nextIdx >= queue.length) {
-      queue = buildShuffledQueue(songsData, null, currentSongRef.current?.id);
-      nextIdx = 0;
-      shuffleQueueRef.current = queue;
-      setShuffleQueue(queue);
-    }
-
-    shuffleIndexRef.current = nextIdx;
-    setShuffleIndex(nextIdx);
-
-    if (!isShuffleModeRef.current) {
-      isShuffleModeRef.current = true;
-      setIsShuffleMode(true);
-    }
-
-    const nextSong = queue[nextIdx];
-    if (nextSong) {
-      playSongDirect(nextSong);
-    }
-  }, [playSongDirect]);
-
-  // Initialize and handle global single-audio manager
-  useEffect(() => {
-    const audio = new Audio();
-    audio.preload = "none";
-    audioRef.current = audio;
-
-    const handleEnded = () => {
-      // Automatically continue playing without pausing in random non-repeating order
-      advanceToNextShuffleTrack();
-    };
-
-    const handlePause = () => {
-      if (!audio.ended) {
-        setIsPlaying(false);
-      }
-    };
-
-    const handlePlay = () => {
-      setIsPlaying(true);
-    };
-
-    const handleError = () => {
-      console.warn("Error reproduciendo audio:", audio.src);
-      setIsPlaying(false);
-    };
-
-    audio.addEventListener("ended", handleEnded);
-    audio.addEventListener("pause", handlePause);
-    audio.addEventListener("play", handlePlay);
-    audio.addEventListener("error", handleError);
-
-    return () => {
-      audio.removeEventListener("ended", handleEnded);
-      audio.removeEventListener("pause", handlePause);
-      audio.removeEventListener("play", handlePlay);
-      audio.removeEventListener("error", handleError);
-      audio.pause();
-      audio.src = "";
-    };
-  }, [advanceToNextShuffleTrack]);
-
-  const handleStartOrSkipShuffle = useCallback(() => {
-    if (!isShuffleModeRef.current || shuffleQueueRef.current.length === 0) {
-      const newQueue = buildShuffledQueue(
-        songsData,
-        null,
-        currentSongRef.current?.id,
-      );
-      shuffleQueueRef.current = newQueue;
-      shuffleIndexRef.current = 0;
-      isShuffleModeRef.current = true;
-
-      setShuffleQueue(newQueue);
-      setShuffleIndex(0);
-      setIsShuffleMode(true);
-
-      if (newQueue[0]) {
-        playSongDirect(newQueue[0]);
-      }
-    } else {
-      advanceToNextShuffleTrack();
-    }
-  }, [advanceToNextShuffleTrack, playSongDirect]);
-
-  const handleToggleShuffleMode = useCallback(() => {
-    if (isShuffleModeRef.current) {
-      isShuffleModeRef.current = false;
-      setIsShuffleMode(false);
-    } else {
-      const active = currentSongRef.current;
-      const newQueue = buildShuffledQueue(songsData, active);
-      shuffleQueueRef.current = newQueue;
-      shuffleIndexRef.current = 0;
-      isShuffleModeRef.current = true;
-
-      setShuffleQueue(newQueue);
-      setShuffleIndex(0);
-      setIsShuffleMode(true);
-
-      if (!active && newQueue[0]) {
-        playSongDirect(newQueue[0]);
-      }
-    }
-  }, [playSongDirect]);
-
-  const handleTogglePlay = useCallback(
-    (song: Song) => {
-      const audio = audioRef.current;
-      if (!audio) return;
-
-      if (currentSong?.id === song.id) {
-        if (isPlaying) {
-          audio.pause();
-        } else {
-          audio
-            .play()
-            .then(() => setIsPlaying(true))
-            .catch((err) => console.error("Error al reanudar audio:", err));
-        }
-      } else {
-        // Keep non-repeating queue synchronized when user picks a specific song
-        if (isShuffleModeRef.current && shuffleQueueRef.current.length > 0) {
-          const queue = [...shuffleQueueRef.current];
-          const curIdx = shuffleIndexRef.current;
-          const foundIdx = queue.findIndex((s) => s.id === song.id);
-
-          if (foundIdx > curIdx) {
-            const targetIdx = curIdx + 1;
-            const temp = queue[targetIdx];
-            queue[targetIdx] = queue[foundIdx];
-            queue[foundIdx] = temp;
-            shuffleQueueRef.current = queue;
-            shuffleIndexRef.current = targetIdx;
-            setShuffleQueue(queue);
-            setShuffleIndex(targetIdx);
-          } else {
-            const rebuilt = buildShuffledQueue(songsData, song);
-            shuffleQueueRef.current = rebuilt;
-            shuffleIndexRef.current = 0;
-            setShuffleQueue(rebuilt);
-            setShuffleIndex(0);
-          }
-        } else {
-          // Prepare a non-repeating shuffle queue starting from this song so when it finishes it continues automatically
-          const rebuilt = buildShuffledQueue(songsData, song);
-          shuffleQueueRef.current = rebuilt;
-          shuffleIndexRef.current = 0;
-          setShuffleQueue(rebuilt);
-          setShuffleIndex(0);
-        }
-
-        playSongDirect(song);
-      }
-    },
-    [currentSong, isPlaying, playSongDirect],
-  );
-
-  const handleClosePlayer = useCallback(() => {
-    const audio = audioRef.current;
-    if (audio) {
-      audio.pause();
-      audio.currentTime = 0;
-    }
-    currentSongRef.current = null;
-    isShuffleModeRef.current = false;
-    setCurrentSong(null);
-    setIsPlaying(false);
-    setIsShuffleMode(false);
-  }, []);
+  const {
+    currentSong,
+    isPlaying,
+    isShuffleMode,
+    shuffleIndex,
+    nextSongInQueue,
+    totalSongs,
+    handleTogglePlay,
+    handleStartOrSkipShuffle,
+    handleToggleShuffleMode,
+    advanceToNextShuffleTrack,
+    handleClosePlayer,
+  } = useAudioPlayer(songsData);
 
   const handleNavigate = useCallback((route: string) => {
     const cleanRoute = route === "/cotizanos" ? "/reserva" : route;
@@ -1603,12 +1432,6 @@ export default function App() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
-  const nextSongInQueue = useMemo(() => {
-    if (!isShuffleMode || shuffleQueue.length === 0) return null;
-    const nextIdx = shuffleIndex + 1;
-    return nextIdx < shuffleQueue.length ? shuffleQueue[nextIdx] : null;
-  }, [isShuffleMode, shuffleQueue, shuffleIndex]);
-
   const renderCurrentPage = () => {
     if (currentRoute === "/") {
       return (
@@ -1624,7 +1447,7 @@ export default function App() {
         />
       );
     }
-    if (currentRoute === "/repertorio") {
+    if (currentRoute === "/repertorio" || currentRoute === "/grabaciones") {
       return (
         <RepertoirePage
           currentSong={currentSong}
@@ -1658,7 +1481,7 @@ export default function App() {
           isPlaying={isPlaying}
           isShuffleMode={isShuffleMode}
           shuffleIndex={shuffleIndex}
-          totalSongs={songsData.length}
+          totalSongs={totalSongs}
           onTogglePlay={() => handleTogglePlay(currentSong)}
           onNextTrack={advanceToNextShuffleTrack}
           onToggleShuffleMode={handleToggleShuffleMode}
@@ -1669,8 +1492,8 @@ export default function App() {
           type="button"
           className="floating-shuffle-btn"
           onClick={handleStartOrSkipShuffle}
-          aria-label="Reproducir repertorio en modo aleatorio continuo"
-          title="Escuchar todas las canciones en modo aleatorio sin pausas"
+          aria-label="Reproducir grabaciones en modo aleatorio continuo"
+          title="Escuchar todas las grabaciones en modo aleatorio sin pausas"
         >
           <Icon name="shuffle" />
           <span>Modo Aleatorio</span>
@@ -1678,7 +1501,10 @@ export default function App() {
       )}
 
       {/* Floating WhatsApp CTA */}
-      <WhatsAppButton short className="floating-whatsapp" />
+      <WhatsAppButton
+        short
+        className={`floating-whatsapp ${currentSong ? "has-active-player" : ""}`}
+      />
     </>
   );
 }
