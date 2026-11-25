@@ -6,7 +6,6 @@ import {
   type MouseEvent,
   type ReactNode,
 } from "react";
-import Packages from "./components/Packages";
 import QuoteForm from "./components/QuoteForm";
 import {
   songsData,
@@ -1062,12 +1061,7 @@ function HomePage({
 
       <div className="cenefa-marqueteria" aria-hidden="true" />
 
-      {/* 4. Paquetes y qué incluye + cobertura por zonas */}
-      <Packages id="paquetes" quoteTargetId="cotizar-inicio" />
-
-      <div className="cenefa-marqueteria" aria-hidden="true" />
-
-      {/* 5. Formulario de cotización directa a WhatsApp */}
+      {/* 4. Formulario de cotización directa a WhatsApp con referencia discreta de precios */}
       <QuoteForm id="cotizar-inicio" />
     </main>
   );

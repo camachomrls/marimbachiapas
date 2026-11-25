@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { CustomSelect } from "./CustomSelect";
+import Packages from "./Packages";
 
 const WHATSAPP_NUMBER = "5219681065475";
 
@@ -26,6 +27,7 @@ export type QuoteFormProps = {
   id?: string;
   initialEventType?: string;
   embedded?: boolean;
+  showPriceReference?: boolean;
 };
 
 /**
@@ -36,6 +38,7 @@ export function QuoteForm({
   id = "cotizar",
   initialEventType,
   embedded = false,
+  showPriceReference = true,
 }: QuoteFormProps) {
   const [eventType, setEventType] = useState<string>(
     initialEventType || EVENT_TYPE_OPTIONS[0],
@@ -78,7 +81,7 @@ export function QuoteForm({
         <h3>Solicita disponibilidad y presupuesto por WhatsApp</h3>
         <p>
           Indícanos los datos básicos de tu celebración y te enviamos la
-          cotización directa sin compromiso.
+          cotización personalizada sin compromiso.
         </p>
       </div>
 
@@ -160,6 +163,8 @@ export function QuoteForm({
           </small>
         </div>
       </form>
+
+      {showPriceReference && <Packages idPrefix={id} />}
     </div>
   );
 

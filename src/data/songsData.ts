@@ -459,8 +459,8 @@ export const songsData: Song[] = [
     id: "cenizas",
     title: "Cenizas",
     genre: "Cumbias y mambos",
-    genreLabel: "Bailable / Danzón",
-    description: "Obra de Manuel \"Wello\" Rivas llevada al repertorio bailable de la marimba orquesta con sección de alientos y percusión.",
+    genreLabel: "Cumbia / Bailable",
+    description: "Clásico de Manuel \"Wello\" Rivas (popularizado en versión cumbia por Bronco) llevado al repertorio bailable de la marimba orquesta con sección de alientos y percusión.",
     src: "/Bailes/07 Cenizas.mp3",
   },
   {

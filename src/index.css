@@ -2261,7 +2261,7 @@ select:focus-visible {
    Mini-Formulario de Cotización Directa a WhatsApp (QuoteForm)
    ========================================================================== */
 .quote-form-section {
-  padding: 1.25rem 0 4.5rem;
+  padding: 2.75rem 0 4.5rem;
 }
 
 .quote-form-container,
@@ -2593,18 +2593,128 @@ select:focus-visible {
 }
 
 /* ==========================================================================
-   Sección de Paquetes y Cobertura Comercial (Packages)
+   Guía Discreta y Colapsable de Referencia de Precios (Estilo Artesanal)
    ========================================================================== */
-.packages-section {
-  padding: 3.5rem 0 4.5rem;
+.price-guide {
+  margin-top: 1.75rem;
+  padding-top: 1.35rem;
+  border-top: 1px dashed rgba(193, 151, 99, 0.5);
 }
 
-.packages-grid {
-  max-width: 62rem;
-  margin-inline: auto;
+.price-guide-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  padding: 0.8rem 1.15rem;
+  border: 2px solid #e0caa5;
+  border-radius: 1.5rem 0.65rem 1.5rem 0.65rem;
+  background: linear-gradient(135deg, #fffaf1 0%, #f5e6c8 100%);
+  color: var(--brown);
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 0 5px 14px rgba(70, 40, 24, 0.08);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.price-guide-toggle:hover,
+.price-guide-toggle.is-open {
+  border-color: #c19763;
+  background: linear-gradient(135deg, #fbf1de 0%, #eed8af 100%);
+  box-shadow: 0 7px 18px rgba(70, 40, 24, 0.12);
+}
+
+.price-guide-toggle-main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.price-guide-icon-badge {
+  width: 2.15rem;
+  height: 2.15rem;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #4e2d22;
+  color: #e0caa5;
+}
+
+.price-guide-icon-badge .icon {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.price-guide-toggle-copy {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+  min-width: 0;
+}
+
+.price-guide-toggle-title {
+  font-family: "Libre Caslon Display", Georgia, serif;
+  font-size: 1.15rem;
+  line-height: 1.15;
+  color: var(--brown);
+}
+
+.price-guide-tag {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  background: #4e2d22;
+  color: #f4d9a6;
+  border: 1px solid #c19763;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.price-guide-chevron {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: 0 0 auto;
+  color: #5c3a28;
+  transition: transform 180ms ease;
+}
+
+.price-guide-chevron.is-open {
+  transform: rotate(180deg);
+}
+
+.price-guide-panel {
+  margin-top: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.price-guide-disclaimer {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--red);
+  border-radius: 0 0.85rem 0.85rem 0;
+  background: rgba(224, 202, 165, 0.28);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #4e3528;
+}
+
+.packages-grid.is-compact {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
+  gap: 1.15rem;
   align-items: stretch;
 }
 
@@ -2612,21 +2722,21 @@ select:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 1.4rem;
-  padding: 2rem;
+  gap: 1rem;
+  padding: 1.45rem 1.5rem;
   border: 2px solid #e0caa5;
   border-radius: var(--organic-radius);
   background: #fffaf1;
   color: var(--brown);
-  box-shadow: 0 8px 22px rgba(70, 40, 24, 0.08);
+  box-shadow: 0 8px 20px rgba(70, 40, 24, 0.08);
   transition:
     transform 180ms ease,
     box-shadow 180ms ease;
 }
 
 .package-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 28px rgba(70, 40, 24, 0.13);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(70, 40, 24, 0.12);
 }
 
 .package-card.is-featured {
@@ -2634,15 +2744,15 @@ select:focus-visible {
   background: linear-gradient(155deg, #4e2d22 0%, #3a2018 100%);
   color: #fff4da;
   box-shadow:
-    0 12px 28px rgba(48, 32, 25, 0.22),
+    0 10px 24px rgba(48, 32, 25, 0.22),
     inset 0 0 0 1px rgba(224, 202, 165, 0.22);
 }
 
 .package-badge {
   display: inline-block;
-  padding: 0.3rem 0.8rem;
+  padding: 0.25rem 0.72rem;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -2657,26 +2767,26 @@ select:focus-visible {
   border-color: #e0caa5;
 }
 
-.package-card h3 {
-  margin: 0.75rem 0 0.5rem;
+.package-card h4 {
+  margin: 0.6rem 0 0.4rem;
   font-family: "Libre Caslon Display", Georgia, serif;
-  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  font-size: clamp(1.35rem, 2.1vw, 1.65rem);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.08;
 }
 
 .package-price-box {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 0.8rem;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.65rem;
 }
 
 .package-price-box strong {
   font-family: "Libre Caslon Display", Georgia, serif;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-size: clamp(1.22rem, 1.95vw, 1.48rem);
   font-weight: 400;
+  line-height: 1.15;
   color: var(--red-dark);
 }
 
@@ -2685,7 +2795,7 @@ select:focus-visible {
 }
 
 .package-price-box span {
-  font-size: 0.82rem;
+  font-size: 0.73rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2698,8 +2808,8 @@ select:focus-visible {
 
 .package-description {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  font-size: 0.88rem;
+  line-height: 1.5;
   color: #5d4537;
 }
 
@@ -2707,33 +2817,22 @@ select:focus-visible {
   color: #ead6ba;
 }
 
-.package-addon {
-  margin-top: 0.95rem;
-  padding: 0.75rem 0.95rem;
-  border-radius: 0.9rem;
-  border: 1px solid #c19763;
-  background: rgba(224, 202, 165, 0.35);
-  color: var(--brown);
-  font-size: 0.88rem;
-  line-height: 1.45;
-}
-
 .package-features {
   margin: 0;
-  padding: 1rem 0 0;
+  padding: 0.85rem 0 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.55rem;
   border-top: 1px solid rgba(193, 151, 99, 0.35);
 }
 
 .package-features li {
   display: flex;
   align-items: flex-start;
-  gap: 0.55rem;
-  font-size: 0.9rem;
-  line-height: 1.45;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  line-height: 1.42;
   color: #463126;
 }
 
@@ -2742,9 +2841,9 @@ select:focus-visible {
 }
 
 .package-features .icon {
-  width: 1.05rem;
-  height: 1.05rem;
-  margin-top: 0.15rem;
+  width: 0.98rem;
+  height: 0.98rem;
+  margin-top: 0.14rem;
   color: #9f402e;
 }
 
@@ -2752,53 +2851,20 @@ select:focus-visible {
   color: #e0caa5;
 }
 
-.package-cta-btn {
-  min-height: 3rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1.35rem;
-  border-radius: 999px;
-  font-size: 0.92rem;
-  font-weight: 700;
-  background: #4e2d22;
-  color: #fff4da;
-  transition:
-    transform 160ms ease,
-    background 160ms ease;
-}
-
-.package-cta-btn:hover {
-  transform: translateY(-2px);
-  background: #653829;
-}
-
-.package-card.is-featured .package-cta-btn {
-  background: #c19763;
-  color: #26160f;
-}
-
-.package-card.is-featured .package-cta-btn:hover {
-  background: #e0caa5;
-}
-
 .packages-coverage-note {
-  max-width: 62rem;
-  margin: 1.75rem auto 0;
-  padding: 1.35rem 1.65rem;
+  padding: 1.05rem 1.25rem;
   display: flex;
   align-items: flex-start;
-  gap: 1rem;
-  border-radius: 1.4rem;
+  gap: 0.9rem;
+  border-radius: 1.25rem;
   border: 1.5px solid #c19763;
   background: rgba(224, 202, 165, 0.28);
   color: var(--brown);
 }
 
 .packages-coverage-icon {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
   flex: 0 0 auto;
   display: grid;
   place-items: center;
@@ -2807,35 +2873,74 @@ select:focus-visible {
   color: #e0caa5;
 }
 
-.packages-coverage-copy h3 {
-  margin: 0 0 0.35rem;
+.packages-coverage-icon .icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.packages-coverage-copy h4 {
+  margin: 0 0 0.25rem;
   font-family: "Libre Caslon Display", Georgia, serif;
-  font-size: 1.25rem;
+  font-size: 1.12rem;
   font-weight: 400;
+  line-height: 1.15;
   color: var(--brown);
 }
 
 .packages-coverage-copy p {
-  margin: 0.25rem 0 0;
-  font-size: 0.92rem;
-  line-height: 1.55;
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
   color: #4e3528;
 }
 
 @media (max-width: 780px) {
-  .packages-grid {
+  .packages-grid.is-compact {
     grid-template-columns: 1fr;
+    gap: 0.9rem;
   }
 }
 
 @media (max-width: 640px) {
+  .price-guide {
+    margin-top: 1.35rem;
+    padding-top: 1.05rem;
+  }
+
+  .price-guide-toggle {
+    padding: 0.68rem 0.9rem;
+    gap: 0.6rem;
+  }
+
+  .price-guide-toggle-copy {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.22rem;
+  }
+
+  .price-guide-toggle-title {
+    font-size: 1.02rem;
+  }
+
+  .price-guide-tag {
+    font-size: 0.63rem;
+    padding: 0.14rem 0.52rem;
+  }
+
   .package-card {
-    padding: 1.5rem 1.25rem;
+    padding: 1.2rem 1.15rem;
+    gap: 0.85rem;
+    border-radius: 1.75rem 0.7rem 1.75rem 0.7rem;
   }
 
   .packages-coverage-note {
-    flex-direction: column;
-    padding: 1.2rem 1.15rem;
+    padding: 0.9rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .packages-coverage-icon {
+    width: 2rem;
+    height: 2rem;
   }
 }
 
