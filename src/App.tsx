@@ -27,6 +27,7 @@ function getWhatsAppUrl(customText?: string) {
 const FACEBOOK_URL = "https://www.facebook.com/share/1CPRKeLhvp/";
 const TIKTOK_URL =
   "https://www.tiktok.com/@marimba_chiapas?is_from_webapp=1&sender_device=pc";
+const YOUTUBE_URL = "https://www.youtube.com/@marimbachiapas";
 const MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=2a.+OTE.+SUR+%23758+B.+San+Antonio,+Ocozocoautla+de+Espinosa,+Chiapas";
 
@@ -132,6 +133,7 @@ function Icon({
     | "search"
     | "facebook"
     | "tiktok"
+    | "youtube"
     | "close"
     | "volume"
     | "shuffle"
@@ -201,6 +203,12 @@ function Icon({
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     ),
     tiktok: <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />,
+    youtube: (
+      <>
+        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58Z" />
+        <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" />
+      </>
+    ),
     close: <path d="M18 6 6 18M6 6l12 12" />,
     volume: (
       <>
@@ -380,6 +388,15 @@ function Header({
             <Icon name="tiktok" />
             <span>TikTok</span>
           </a>
+          <a
+            href={YOUTUBE_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
+          >
+            <Icon name="youtube" />
+            <span>YouTube</span>
+          </a>
         </nav>
       </div>
     </header>
@@ -541,6 +558,15 @@ function ContactPanel({ featured = false }: { featured?: boolean }) {
                 <Icon name="tiktok" />
                 <span>TikTok Oficial</span>
               </a>
+              <a
+                href={YOUTUBE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="youtube-btn"
+              >
+                <Icon name="youtube" />
+                <span>YouTube Oficial</span>
+              </a>
             </div>
           </div>
         )}
@@ -596,6 +622,17 @@ function VideoGallery() {
             </div>
           </article>
         ))}
+      </div>
+      <div style={{ textAlign: "center", marginTop: "2rem" }}>
+        <a
+          href={YOUTUBE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="youtube-btn"
+        >
+          <Icon name="youtube" />
+          <span>Ver más videos en nuestro canal de YouTube</span>
+        </a>
       </div>
     </section>
   );
@@ -1283,6 +1320,15 @@ function BookingPage() {
                 <Icon name="tiktok" />
                 <span>TikTok Oficial</span>
               </a>
+              <a
+                href={YOUTUBE_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="youtube-btn"
+              >
+                <Icon name="youtube" />
+                <span>YouTube Oficial</span>
+              </a>
             </div>
           </div>
 
@@ -1393,6 +1439,15 @@ function Footer({ onNavigate }: { onNavigate: (route: string) => void }) {
           >
             <Icon name="tiktok" />
             <span>TikTok Oficial</span>
+          </a>
+          <a
+            href={YOUTUBE_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem" }}
+          >
+            <Icon name="youtube" />
+            <span>YouTube Oficial</span>
           </a>
         </nav>
       </div>

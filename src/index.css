@@ -448,7 +448,8 @@ select:focus-visible {
 
 .contact-panel-action .whatsapp-button,
 .contact-panel-action .facebook-btn,
-.contact-panel-action .tiktok-btn {
+.contact-panel-action .tiktok-btn,
+.contact-panel-action .youtube-btn {
   min-height: 3rem;
   display: inline-flex;
   flex-direction: row;
@@ -468,7 +469,8 @@ select:focus-visible {
 
 .contact-panel-action .whatsapp-button .icon,
 .contact-panel-action .facebook-btn .icon,
-.contact-panel-action .tiktok-btn .icon {
+.contact-panel-action .tiktok-btn .icon,
+.contact-panel-action .youtube-btn .icon {
   width: 1.15rem;
   height: 1.15rem;
   margin-bottom: 0;
@@ -476,7 +478,8 @@ select:focus-visible {
 
 .contact-panel-action .whatsapp-button span,
 .contact-panel-action .facebook-btn span,
-.contact-panel-action .tiktok-btn span {
+.contact-panel-action .tiktok-btn span,
+.contact-panel-action .youtube-btn span {
   font-size: inherit;
   font-weight: inherit;
   letter-spacing: normal;
@@ -1364,7 +1367,8 @@ select:focus-visible {
 
   .contact-panel-action .whatsapp-button,
   .contact-panel-action .facebook-btn,
-  .contact-panel-action .tiktok-btn {
+  .contact-panel-action .tiktok-btn,
+  .contact-panel-action .youtube-btn {
     min-width: 14rem;
     min-height: 3.2rem;
     padding-inline: 1.4rem;
@@ -1432,7 +1436,8 @@ select:focus-visible {
   .whatsapp-button,
   .cream-button,
   .facebook-btn,
-  .tiktok-btn {
+  .tiktok-btn,
+  .youtube-btn {
     min-height: 3.2rem;
     font-size: 0.96rem;
     font-weight: 700;
@@ -2213,6 +2218,29 @@ select:focus-visible {
   transform: translateY(-2px);
   background: #241915;
   box-shadow: 0 6px 14px rgba(254, 44, 85, 0.28);
+}
+
+/* Botón YouTube y Enlace */
+.youtube-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 3rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: #c81e1e;
+  color: #fff6e8;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  box-shadow: 0 4px 10px rgba(200, 30, 30, 0.28);
+}
+
+.youtube-btn:hover {
+  transform: translateY(-2px);
+  background: #a91818;
+  box-shadow: 0 6px 14px rgba(200, 30, 30, 0.38);
 }
 
 /* Media Queries para Videos y Presentación */
